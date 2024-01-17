@@ -1,0 +1,125 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    height: 91vh;
+    background: linear-gradient(135deg, #00bcd4, #333);
+    background-size: cover;
+    color: #fff;
+
+    /*background-image: url('../../../public//ghm-back.jpeg');*/
+    background-position: center;
+    opacity: 0.9;
+}
+
+.header {
+    background-color: #333;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    /* Add spacing between image and text */
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.header-text {
+    flex: 1;
+    /* Occupy remaining space */
+    display: flex;
+    justify-content: center;
+}
+
+.header-text h1 {
+    margin: 0;
+    color: white;
+}
+
+.content {
+    background-color: #3498db;
+    /* Green background color, adjust as needed */
+    color: hsl(0, 0%, 100%);
+    /* White text color */
+    padding: 20px;
+    /* Adjust padding as needed */
+    text-align: center;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.content h1 {
+    margin: 0;
+}
+
+.content p {
+    margin: 10px 0;
+}
+
+.footer {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+}
+
+.button-class {
+    margin: 10px;
+    background-color: #1a237e;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content {
+    color: floralwhite;
+}
+
+.content li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.about-us {
+    /*padding: 40px;*/
+    text-align: center;
+}
+
+.team-member {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member h4 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.team-member p {
+    margin: 8px 0;
+    font-size: 16px;
+}

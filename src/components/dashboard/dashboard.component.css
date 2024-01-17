@@ -1,0 +1,49 @@
+.dashboard-container {
+    width: 100vw;
+    height: 90vh;
+}
+
+.demo-logo-vertical {
+    text-align: center;
+    padding: 10px;
+}
+
+.logo-class {
+    width: 80px !important;
+}
+
+.header-class {
+    padding: 0
+}
+
+.button-class {
+    font-size: 16px;
+    width: 64;
+    height: 64
+}
+
+.content-class {
+    margin: 24px 16px;
+    padding: 24px;
+    min-height: 280;
+    max-height: 80vw;
+    overflow: scroll;
+}
+
+.welcome-text {
+    font-weight: bold;
+    margin-left: 40vw;
+}
+
+.logout-button {
+    position: absolute;
+    right: 9px;
+    top: 20px;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
