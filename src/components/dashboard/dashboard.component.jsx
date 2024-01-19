@@ -16,7 +16,7 @@ import Students from '../students'
 import Parents from '../parents'
 import Teachers from '../teachers'
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
 
