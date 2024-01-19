@@ -68,7 +68,7 @@ const menuItems = [
 
 const App = () => {
   const history = useNavigate();
-  const [selectedTab, setSelectedTab] = useState('1')
+  const [selectedTab, setSelectedTab] = useState('dashboard-admin')
 
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -104,6 +104,7 @@ const App = () => {
           mode="inline"
           selectedKeys={[selectedTab]}
           onClick={handleMenuClick}
+          defaultSelectedKeys={['dashboard-admin']}
         >
           <SubMenu key="dashboard" icon={<UserOutlined />} title="Dashboard">
             {subMenuItems.map((item) => (
