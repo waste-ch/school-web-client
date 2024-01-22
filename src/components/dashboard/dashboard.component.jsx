@@ -133,7 +133,7 @@ const App = () => {
             onClick={() => setCollapsed(!collapsed)}
             className='button-class'
           />
-          <span className='welcome-text'>Hello, Welcome To Dashboard</span>
+          <span className='welcome-text'>Welcome</span>
           <Button type="primary" className='logout-button' onClick={handleLogout}>
             Logout
           </Button>

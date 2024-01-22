@@ -1,6 +1,5 @@
 
-import { useState } from 'react'
-import { Table, Card, Avatar } from 'antd';
+import { Card, Avatar, Calendar, Typography } from 'antd';
 import {
   SolutionOutlined,
   MoneyCollectOutlined,
@@ -8,56 +7,7 @@ import {
   TeamOutlined
 } from '@ant-design/icons';
 import AdminCharts from './admin_charts'
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'Name',
-    sorter: true,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'Gender',
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'Email',
-  },
-  {
-    title: 'Complaint',
-    dataIndex: 'Complaint',
-  },
-];
-
-const data = [
-  {
-    Name: 'John Doe',
-    Email: 'john.doe@example.com',
-    Gender: 'Male',
-    Complaint: 'Issue with delivery',
-  },
-  {
-    Name: 'Jane Smith',
-    Email: 'jane.smith@example.com',
-    Gender: 'Female',
-    Complaint: 'Product quality concern',
-  },
-  {
-    Name: 'Michael Johnson',
-    Email: 'michael.johnson@example.com',
-    Gender: 'Male',
-    Complaint: 'Workers not coming',
-  },
-  {
-    Name: 'Emily Brown',
-    Email: 'emily.brown@example.com',
-    Gender: 'Female',
-    Complaint: 'Garbage not college since one month',
-  },
-  // Add more records as needed...
-];
-
+const { Title } = Typography;
 
 const cardData = [
   { key: 'students', title: 'Students', value: 200, icon: <SolutionOutlined /> },
@@ -78,34 +28,25 @@ const cardRender = cardData.map((item, index) => (
 
 const Admin
   = () => {
-    const [tableParams, setTableParams] = useState({
-      pagination: {
-        current: 1,
-        pageSize: 10,
-      },
-    });
 
-    const handleTableChange = (pagination, filters, sorter) => {
-      setTableParams({
-        pagination,
-        filters,
-        ...sorter,
-      });
-
-    };
     return (
       <>
-        <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', marginBottom: '20px', maxHeight: "6rem" }}>
+        <Title level={2}>Admin</Title>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px', maxHeight: "6rem" }}>
           {cardRender}
         </div>
         <AdminCharts />
-        <Table
+        <Card title="Event Calender" style={{ width: '40%' }}>
+          <Calendar />
+        </Card>
+        {/*<Table
           columns={columns}
           rowKey={'email'}
           dataSource={data}
           pagination={tableParams.pagination}
           onChange={handleTableChange}
-        />
+        />*/}
       </>
     );
   };

@@ -1,111 +1,149 @@
 import React from 'react';
-import { Card, Row, Col, Table, Avatar } from 'antd';
+import { Card, Row, Col, Table, Avatar, Typography } from 'antd';
 import {
-  ScheduleOutlined,
+  UserOutlined,
   CalendarOutlined,
-  PercentageOutlined
+  DollarOutlined,
+  SolutionOutlined
 } from '@ant-design/icons';
-import Teachers1 from '../students/details'
+import TeacherCharts from './teachers_charts';
+const { Title } = Typography;
+
 
 const columns = [
   {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
+    title: 'Roll No',
+    dataIndex: 'rollNo',
+    key: 'rollNo',
   },
   {
-    title: 'Exam Name',
-    dataIndex: 'examName',
-    key: 'examName',
+    title: 'Photo',
+    dataIndex: 'photo',
+    key: 'photo',
+    render: (photo) => <Avatar src={photo} />,
   },
   {
-    title: 'Subject',
-    dataIndex: 'subject',
-    key: 'subject',
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
   },
   {
-    title: 'Grade',
-    dataIndex: 'grade',
-    key: 'grade',
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
   },
   {
-    title: 'Percentage',
-    dataIndex: 'percentage',
-    key: 'percentage',
+    title: 'Class',
+    dataIndex: 'class',
+    key: 'class',
   },
   {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
+    title: 'Section',
+    dataIndex: 'section',
+    key: 'section',
+  },
+  {
+    title: 'Parents',
+    dataIndex: 'parents',
+    key: 'parents',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: 'Date of Birth',
+    dataIndex: 'dob',
+    key: 'dob',
+  },
+  {
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
   },
 ];
 
 const data = [
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    rollNo: '101',
+    photo: 'https://example.com/photo1.jpg',
+    name: 'John Doe',
+    gender: 'Male',
+    class: '10A',
+    section: 'A',
+    parents: 'Mr. and Mrs. Doe',
+    address: '123 Main Street, City',
+    dob: '2005-05-10',
+    phone: '+1234567890',
+    email: 'john.doe@example.com',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    rollNo: '102',
+    photo: 'https://example.com/photo2.jpg',
+    name: 'Jane Smith',
+    gender: 'Female',
+    class: '11B',
+    section: 'B',
+    parents: 'Mr. and Mrs. Smith',
+    address: '456 Oak Avenue, Town',
+    dob: '2004-08-15',
+    phone: '+9876543210',
+    email: 'jane.smith@example.com',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    rollNo: '103',
+    photo: 'https://example.com/photo2.jpg',
+    name: 'Jane Smith',
+    gender: 'Female',
+    class: '11B',
+    section: 'B',
+    parents: 'Mr. and Mrs. Smith',
+    address: '456 Oak Avenue, Town',
+    dob: '2004-08-15',
+    phone: '+9876543210',
+    email: 'jane.smith@example.com',
+  }, {
+    rollNo: '104',
+    photo: 'https://example.com/photo2.jpg',
+    name: 'Jane Smith',
+    gender: 'Female',
+    class: '11B',
+    section: 'B',
+    parents: 'Mr. and Mrs. Smith',
+    address: '456 Oak Avenue, Town',
+    dob: '2004-08-15',
+    phone: '+9876543210',
+    email: 'jane.smith@example.com',
+  }, {
+    rollNo: '105',
+    photo: 'https://example.com/photo2.jpg',
+    name: 'Jane Smith',
+    gender: 'Female',
+    class: '11B',
+    section: 'B',
+    parents: 'Mr. and Mrs. Smith',
+    address: '456 Oak Avenue, Town',
+    dob: '2004-08-15',
+    phone: '+9876543210',
+    email: 'jane.smith@example.com',
   },
-  {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
-  },
-  {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
-  },
-  {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
-  },
-  // Add more data as needed
 ];
 
 const cardData = [
-  { key: 'notifications', title: 'Notifications', value: 200, icon: <ScheduleOutlined /> },
-  { key: 'events', title: 'Events', value: 20, icon: <CalendarOutlined /> },
-  { key: 'attendance', title: 'Attendance', value: 100, icon: <PercentageOutlined /> },
+  { key: 'totalStudents', title: 'Total Students', value: 2050, icon: <UserOutlined /> },
+  { key: 'totalExams', title: 'Total Exams', value: 1000, icon: <CalendarOutlined /> },
+  { key: 'graduateStudents', title: 'Graduate Students', value: 550, icon: <SolutionOutlined /> },
+  { key: 'totalIncome', title: 'Total Income', value: "$2000000", icon: <DollarOutlined /> },
 ];
 
 const cardRender = cardData.map((item, index) => (
-  <Card style={{ margin: '0% 1%' }} key={index}>
+  <Card style={{ margin: '1%' }} key={index}>
     <Card.Meta
       avatar={<Avatar icon={item.icon} style={{ fontSize: '24px', marginRight: '10px' }} />}
       title={item.title}
@@ -116,22 +154,28 @@ const cardRender = cardData.map((item, index) => (
 
 const Teachers = () => {
   return (
-    <Row gutter={16}>
-      <Col span={12}>
-        <Card title="Student Details">
-          <Teachers1 />
-        </Card>
-      </Col>
-      <Col span={12}>
-        <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', marginBottom: '20px', maxHeight: "6rem" }}>
-          {cardRender}
-        </div>
-        <Card title="Examination Details">
-          {/* Use Ant Design Table for examination details */}
-          <Table columns={columns} dataSource={data} />
-        </Card>
-      </Col>
-    </Row>
+    <>
+      <Title level={2}>Teachers</Title>
+
+      <Row gutter={16}>
+        <Col span={10}>
+          <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', }}>
+            {cardRender}
+          </div>
+        </Col>
+        <Col span={14}>
+          <TeacherCharts />
+        </Col>
+
+
+        <Col span={24}>
+          <Card title="My Students">
+            {/* Use Ant Design Table for examination details */}
+            <Table columns={columns} dataSource={data} />
+          </Card>
+        </Col>
+      </Row>
+    </>
   );
 };
 

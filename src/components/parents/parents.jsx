@@ -1,13 +1,94 @@
 import React from 'react';
-import { Card, Row, Col, Table, Avatar } from 'antd';
+import { Card, Row, Col, Table, Avatar, Typography, Tag } from 'antd';
 import {
   ScheduleOutlined,
   CalendarOutlined,
-  PercentageOutlined
+  MoneyCollectOutlined
 } from '@ant-design/icons';
 import KidDetails from '../students/details'
+const { Title } = Typography;
+
 
 const columns = [
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Expense',
+    dataIndex: 'expense',
+    key: 'expense',
+  },
+  {
+    title: 'Amount',
+    dataIndex: 'amount',
+    key: 'amount',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+    render: (status) => (
+      <Tag color={status === 'Paid' ? 'green' : 'red'}>{status}</Tag>
+    ),
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+  },
+];
+const data = [
+  {
+    id: 1,
+    expense: 'Exam Fees',
+    amount: "$100",
+    status: 'Paid',
+    email: 'john.doe@example.com',
+    date: '2022-01-15',
+  },
+  {
+    id: 2,
+    expense: 'Books',
+    amount: "$50",
+    status: 'Due',
+    email: 'jane.smith@example.com',
+    date: '2022-02-20',
+  },
+  {
+    id: 3,
+    expense: 'Semester Fees',
+    amount: "$300",
+    status: 'Paid',
+    email: 'john.doe@example.com',
+    date: '2022-03-15',
+  },
+  {
+    id: 4,
+    expense: 'Exam Fees',
+    amount: "$100",
+    status: 'Paid',
+    email: 'john.doe@example.com',
+    date: '2022-04-15',
+  },
+  {
+    id: 5,
+    expense: 'Semester Fees',
+    amount: "$300",
+    status: 'Paid',
+    email: 'john.doe@example.com',
+    date: '2022-05-15',
+  },
+];
+
+
+const examinationColumns = [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -22,6 +103,16 @@ const columns = [
     title: 'Subject',
     dataIndex: 'subject',
     key: 'subject',
+  },
+  {
+    title: 'Class',
+    dataIndex: 'class',
+    key: 'class',
+  },
+  {
+    title: 'Roll No',
+    dataIndex: 'rollNo',
+    key: 'rollNo',
   },
   {
     title: 'Grade',
@@ -40,72 +131,68 @@ const columns = [
   },
 ];
 
-const data = [
+const examinationData = [
   {
-    key: '1',
     id: 1,
     examName: 'Midterm',
     subject: 'Math',
+    class: '10A',
+    rollNo: '1001',
     grade: 'A',
     percentage: '85%',
-    date: '2022-05-15',
+    date: '2022-01-15',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    id: 2,
+    examName: 'Final',
+    subject: 'Science',
+    class: '11B',
+    rollNo: '1102',
+    grade: 'B+',
+    percentage: '78%',
+    date: '2022-02-20',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    id: 3,
+    examName: 'Final',
+    subject: 'Science',
+    class: '11B',
+    rollNo: '1102',
+    grade: 'B+',
+    percentage: '78%',
+    date: '2022-02-20',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    id: 4,
+    examName: 'Final',
+    subject: 'Science',
+    class: '11B',
+    rollNo: '1102',
+    grade: 'B+',
+    percentage: '78%',
+    date: '2022-02-20',
   },
   {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
+    id: 5,
+    examName: 'Final',
+    subject: 'Science',
+    class: '11B',
+    rollNo: '1102',
+    grade: 'B+',
+    percentage: '78%',
+    date: '2022-02-20',
   },
-  {
-    key: '1',
-    id: 1,
-    examName: 'Midterm',
-    subject: 'Math',
-    grade: 'A',
-    percentage: '85%',
-    date: '2022-05-15',
-  },
-  // Add more data as needed
 ];
 
 const cardData = [
+  { key: 'dueFees', title: 'Due Fees', value: '$200', icon: <MoneyCollectOutlined /> },
   { key: 'notifications', title: 'Notifications', value: 200, icon: <ScheduleOutlined /> },
-  { key: 'events', title: 'Events', value: 20, icon: <CalendarOutlined /> },
-  { key: 'attendance', title: 'Attendance', value: 100, icon: <PercentageOutlined /> },
+  { key: 'result', title: 'Result', value: 20, icon: <CalendarOutlined /> },
+  { key: 'expenses', title: 'Expenses', value: "$193000", icon: <MoneyCollectOutlined /> },
 ];
 
 const cardRender = cardData.map((item, index) => (
-  <Card style={{ margin: '0% 1%' }} key={index}>
+  <Card style={{ margin: '0% 1%', width: "25%" }} key={index}>
     <Card.Meta
       avatar={<Avatar icon={item.icon} style={{ fontSize: '24px', marginRight: '10px' }} />}
       title={item.title}
@@ -116,23 +203,38 @@ const cardRender = cardData.map((item, index) => (
 
 const Parents = () => {
   return (
-    <Row gutter={16}>
-      <Col span={12}>
-        <Card title="My Kids">
-          <KidDetails title="Kid 1" />
-          <KidDetails title="Kid 2" />
-        </Card>
-      </Col>
-      <Col span={12}>
-        <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', marginBottom: '20px', maxHeight: "6rem" }}>
-          {cardRender}
-        </div>
-        <Card title="Examination Details">
-          {/* Use Ant Design Table for examination details */}
-          <Table columns={columns} dataSource={data} />
-        </Card>
-      </Col>
-    </Row>
+    <>
+      <Title level={2}>Parents</Title>
+      <Row gutter={16}>
+        <Col span={24}>
+          <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', marginBottom: '20px', maxHeight: "6rem" }}>
+            {cardRender}
+          </div>
+
+        </Col>
+      </Row>
+
+      <Row gutter={16}>
+        <Col span={12}>
+          <Card title="My Kids">
+            <KidDetails showExtra={false} />
+            <KidDetails showExtra={false} />
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card title="All Expenses">
+            {/* Use Ant Design Table for examination details */}
+            <Table columns={columns} dataSource={data} />
+          </Card>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={24}>
+          <h1>All Exam Results</h1>
+          <Table columns={examinationColumns} dataSource={examinationData} />
+        </Col>
+      </Row>
+    </>
   );
 };
 

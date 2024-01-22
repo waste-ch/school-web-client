@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Card } from 'antd';
-import { Column, Pie } from '@ant-design/plots';
+import { Column, Pie, Area } from '@ant-design/plots';
 
 
 const dataBar = [
@@ -43,15 +43,27 @@ const pieConfig = {
     },
 };
 
+const dataMountain = [
+    { year: '2021', totalCollections: 30000, feesCollections: 15000 },
+    { year: '2022', totalCollections: 45000, feesCollections: 20000 },
+    // Add more data as needed
+];
+const config = {
+    data: dataMountain,
+    xField: 'year',
+    yField: "totalCollections",
+};
+
 
 const AdminCharts = () => {
     return (
         <Row gutter={16}>
             <Col span={8} key={'earnings'}>
                 <Card title="Earnings">
-                    <Column data={dataBar} xField="year" yField="expenses" />
-
-                    {/*<Line data={dataMountain} xField="year" yField={['totalCollections', 'feesCollections']} />*/}
+                    <Area
+                        {
+                        ...config}
+                    />
                 </Card>
             </Col>
             <Col span={8} key={'Expenses'}>
@@ -61,7 +73,7 @@ const AdminCharts = () => {
             </Col>
             <Col span={8} key={'Students'}>
                 <Card title="Students">
-                    <Pie {...pieConfig} /> ;
+                    <Pie {...pieConfig} />
                     {/*<Pie className='chart-class' {...pieChartConfig} />*/}
                 </Card>
             </Col>
