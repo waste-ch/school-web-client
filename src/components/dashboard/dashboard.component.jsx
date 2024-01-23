@@ -5,7 +5,7 @@ import {
   UserOutlined,
   SolutionOutlined,
   UsergroupAddOutlined,
-  TeamOutlined
+  TeamOutlined, FormOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import './dashboard.component.css';
@@ -15,6 +15,7 @@ import Admin from '../admin'
 import Students from '../students'
 import Parents from '../parents'
 import Teachers from '../teachers'
+import Exam from '../exam'
 
 const { Header, Sider, Content } = Layout;
 
@@ -45,11 +46,6 @@ const subMenuItems = [
 
 const menuItems = [
   {
-    key: 'admin',
-    icon: <UserOutlined />,
-    label: 'Admin',
-  },
-  {
     key: 'students',
     icon: <SolutionOutlined />,
     label: 'Students',
@@ -63,6 +59,11 @@ const menuItems = [
     key: 'teachers',
     icon: <TeamOutlined />,
     label: 'Teachers',
+  },
+  {
+    key: 'exam',
+    icon: <FormOutlined />,
+    label: 'Exam',
   },
 ]
 
@@ -148,6 +149,7 @@ const App = () => {
           {(selectedTab === 'dashboard-students' || selectedTab === 'students') && <Students />}
           {(selectedTab === 'dashboard-parents' || selectedTab === 'parents') && <Parents />}
           {(selectedTab === 'dashboard-teachers' || selectedTab === 'teachers') && <Teachers />}
+          {(selectedTab === 'exam') && <Exam />}
         </Content>
       </Layout>
     </Layout>
