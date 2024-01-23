@@ -13,8 +13,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Admin from '../admin'
 import Students from '../students'
+import StudentDetails from '../students/students'
 import Parents from '../parents'
+import ParentDetails from '../parents/parents'
 import Teachers from '../teachers'
+import TeacherDetails from '../teachers/teachers'
 import Exam from '../exam'
 
 const { Header, Sider, Content } = Layout;
@@ -145,10 +148,13 @@ const App = () => {
             background: colorBgContainer,
           }}
         >
-          {(selectedTab === 'dashboard-admin' || selectedTab === 'admin') && <Admin />}
-          {(selectedTab === 'dashboard-students' || selectedTab === 'students') && <Students />}
-          {(selectedTab === 'dashboard-parents' || selectedTab === 'parents') && <Parents />}
-          {(selectedTab === 'dashboard-teachers' || selectedTab === 'teachers') && <Teachers />}
+          {(selectedTab === 'dashboard-admin') && <Admin />}
+          {(selectedTab === 'dashboard-students') && <StudentDetails />}
+          {(selectedTab === 'students') && <Students />}
+          {(selectedTab === 'dashboard-parents') && <ParentDetails />}
+          {(selectedTab === 'parents') && <Parents />}
+          {(selectedTab === 'dashboard-teachers') && <TeacherDetails />}
+          {(selectedTab === 'teachers') && <Teachers />}
           {(selectedTab === 'exam') && <Exam />}
         </Content>
       </Layout>
