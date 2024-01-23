@@ -1,3 +1,3 @@
-import Parents from "./parents";
+import ParentTabs from "./parent_tabs";
 
-export default Parents
+export default ParentTabs
