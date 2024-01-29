@@ -29,9 +29,13 @@ const LoginButton = () => {
     };
 
     return (
-        <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
-            <span style={{ textDecoration: 'underline', cursor: 'pointer', "marginRight": "30px" }}>Login</span>
-        </Dropdown>
+        <>
+
+            <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
+                <span style={{ textDecoration: 'underline', cursor: 'pointer', "marginRight": "30px" }}>Login</span>
+            </Dropdown>
+            <span onClick={() => handleLogin('/dashboard')} style={{ textDecoration: 'underline', cursor: 'pointer', "marginRight": "30px" }}>Dashboard</span>
+        </>
     );
 };
 
