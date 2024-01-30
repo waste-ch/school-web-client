@@ -1,0 +1,30 @@
+.header {
+    background-color: #333;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    /* Add spacing between image and text */
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.header-text {
+    flex: 1;
+    /* Occupy remaining space */
+    display: flex;
+    justify-content: center;
+}
+
+.header-text h1 {
+    margin: 0;
+    color: white;
+}

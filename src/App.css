@@ -1,0 +1,51 @@
+.header {
+    background-color: #3498db;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+.logo-class {
+    width: 80px !important;
+    margin-left: 20px;
+}
+
+.header-text {
+    flex: 1;
+    /* Occupy remaining space */
+    display: flex;
+    justify-content: center;
+}
+
+.header-text h1 {
+    margin: 0;
+    color: white;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.footer {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+.main-container {
+    background-image: url('../public/school_background_image.jpeg');
+    background-position: center;
+    background-size: cover;
+}
