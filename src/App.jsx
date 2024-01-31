@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Main from "./components/main";
 /** dashboard component */
@@ -10,6 +10,10 @@ import { useData } from "./data_context";
 import { getTokenFC } from "./firebase";
 import { notification } from "antd";
 import StudentDashboard from "./components/student-components/dashboard";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import { AdminLogin } from "./components/login/AdminLogin";
+import Teachers from "./components/teachers/teachers";
+import Parents from "./components/parents/parents";
 
 const App = () => {
   const history = useNavigate();
@@ -53,7 +57,6 @@ const App = () => {
     if (data && !Object.keys(data).length) {
       history("/");
     }
-
     getTokenFC();
     // eslint-disable-next-line
   }, []);
@@ -63,14 +66,19 @@ const App = () => {
       {contextHolder}
       <Routes>
         <Route path="/" element={<Main />} />
-
-        {/*dashboard component*/}
-        <Route path="/dashboard" element={<DashboardComponent />} />
+        <Route element={<ProtectedRoute />}>
+          {/*dashboard component*/}
+          <Route path="/dashboard" element={<DashboardComponent />} />
+          <Route path="/admin" element={<DashboardComponent />} />
+          <Route path="/students" element={<StudentDashboard />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/parents" element={<Parents />} />
+        </Route>
+        <Route element={<AdminLogin />} path={"/login"} />
         {/*no match component*/}
         <Route path="*" element={<NoMatch />} />
       </Routes>
-      <DashboardComponent />
-      <StudentDashboard />
+
       <footer className="footer">
         <p>
           &copy; {new Date().getFullYear()} Sunshine Valley Academy. All rights

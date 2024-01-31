@@ -1,55 +1,108 @@
-
-import { Card, Avatar, Calendar, Typography } from 'antd';
+import { Avatar, Calendar, Card, Typography } from "antd";
 import {
-  SolutionOutlined,
   MoneyCollectOutlined,
+  SolutionOutlined,
+  TeamOutlined,
   UsergroupAddOutlined,
-  TeamOutlined
-} from '@ant-design/icons';
-import AdminCharts from './admin_charts'
+} from "@ant-design/icons";
+import AdminCharts from "./admin_charts";
+import { useNavigate } from "react-router-dom";
+
 const { Title } = Typography;
 
 const cardData = [
-  { key: 'students', title: 'Students', value: 200, icon: <SolutionOutlined /> },
-  { key: 'teachers', title: 'Teachers', value: 20, icon: <TeamOutlined /> },
-  { key: 'parents', title: 'Parents', value: 100, icon: <UsergroupAddOutlined /> },
-  { key: 'earnings', title: 'Earnings', value: 100, icon: <MoneyCollectOutlined /> },
+  {
+    key: "students",
+    title: "Students",
+    route: "/student",
+    value: 200,
+    icon: <SolutionOutlined />,
+  },
+  {
+    key: "teachers",
+    title: "Teachers",
+    route: "/teachers",
+    value: 20,
+    icon: <TeamOutlined />,
+  },
+  {
+    key: "parents",
+    title: "Parents",
+    route: "/parents",
+    value: 100,
+    icon: <UsergroupAddOutlined />,
+  },
+  {
+    key: "earnings",
+    title: "Earnings",
+    route: "/earnings",
+    value: 100,
+    icon: <MoneyCollectOutlined />,
+  },
 ];
 
-const cardRender = cardData.map((item, index) => (
-  <Card style={{ width: '25%', margin: '0% 1%' }} key={index}>
-    <Card.Meta
-      avatar={<Avatar icon={item.icon} style={{ fontSize: '24px', marginRight: '10px' }} />}
-      title={item.title}
-      description={item.value}
-    />
-  </Card>
-));
+const CardRender = ({ item }) => {
+  const { key, icon, title, value, route } = item;
+  const navigate = useNavigate();
+  return (
+    <Card
+      hoverable
+      onClick={() => {
+        navigate(route);
+      }}
+      style={{
+        width: "25%",
+        margin: "0% 1%",
+        borderRadius: "12px",
+        cursor: "pointer",
+      }}
+      key={key}
+    >
+      <Card.Meta
+        avatar={
+          <Avatar
+            icon={icon}
+            size={50}
+            style={{ fontSize: "24px", marginRight: "10px" }}
+          />
+        }
+        title={title}
+        description={value}
+      />
+    </Card>
+  );
+};
 
-const Admin
-  = () => {
+const Admin = () => {
+  return (
+    <>
+      <Title level={2}>Admin</Title>
 
-    return (
-      <>
-        <Title level={2}>Admin</Title>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px', maxHeight: "6rem" }}>
-          {cardRender}
-        </div>
-        <AdminCharts />
-        <Card title="Event Calender" style={{ width: '40%' }}>
-          <Calendar />
-        </Card>
-        {/*<Table
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+          maxHeight: "6rem",
+        }}
+      >
+        {cardData.map((item) => (
+          <CardRender item={item} />
+        ))}
+      </div>
+      <AdminCharts />
+      <Card title="Event Calender" style={{ width: "40%" }}>
+        <Calendar />
+      </Card>
+      {/*<Table
           columns={columns}
           rowKey={'email'}
           dataSource={data}
           pagination={tableParams.pagination}
           onChange={handleTableChange}
         />*/}
-      </>
-    );
-  };
+    </>
+  );
+};
 
-export default Admin
-  ;
+export default Admin;
