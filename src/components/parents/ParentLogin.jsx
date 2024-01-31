@@ -1,13 +1,17 @@
-// src/components/Login.js
+// src/components/ParentLogin.js
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
-import './teacher.css';
-const TeacherLogin = () => {
+import { useNavigate } from 'react-router-dom';
+import './parent.css';
+import './fee.jsx';
+const ParentLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
+  function goToStd(){
+    navigate("/Std");
+  }
 
- /* const handleLogin = () => {
+  /*const handleLogin = () => {
     // Perform authentication logic here
 
     // For this example, let's consider a simple username and password check
@@ -21,14 +25,15 @@ const TeacherLogin = () => {
   return (
   <>
 
-    <h2>Teacher Login</h2>
+    <h2>Parent Login</h2>
     <div class="login-container">
       
       <form>
         <label>
+         
           <input
             type="text"
-            placeholder='Username'
+            placeholder=' Username:'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -38,13 +43,13 @@ const TeacherLogin = () => {
           
           <input
             type="password"
-            placeholder='Password'
+            placeholder='Password:'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         <br />
-        <button type="button">
+        <button type="button" onClick={goToStd}>
           Login
         </button>
       </form>
@@ -53,4 +58,4 @@ const TeacherLogin = () => {
   );
 };
 
-export default TeacherLogin;
+export default ParentLogin;

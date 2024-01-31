@@ -16,7 +16,7 @@ const Header = () => {
                 />
             </div>
             <div className="header-text">
-                <h1>GHMC Waste Management</h1>
+                <h1>education</h1>
             </div>
         </header>
     )
