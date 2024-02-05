@@ -2,8 +2,6 @@ import React from 'react';
 import { Row, Col, Card } from 'antd';
 import { Pie } from '@ant-design/plots';
 
-
-
 const data = [
     {
         type: 'Present',

@@ -1,58 +1,78 @@
-import React, { useState } from 'react';
+import React from "react";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+//import TeacherClass from "./teacherclass";
+import TeacherAllStd from "./TeachAllStd";
+import Timetable from "./timetable";
+import Results from "./mainresults";
+import Attend from "./Attend";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   SolutionOutlined,
   UserOutlined,
-  //FormOutlined
+  FormOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
-//import './dashboard.component.css';
-import { useNavigate } from 'react-router-dom';
-//import StudentDetails from '../students/students'
-//import Exam from '../exam'
-import './std.css'
-import FeePaymentForm from './fee'
-import PTabs from './p_tabs'
-import Mykids from './mykids'
-import Attendence from './attendence';
-import Results from './results';
-import Separateresults from './separateresults';
-import StudentHomework from '../students/Std_Homework';
+import Event from "./Events";
+import StudentDetails from "../../students/studentdetails";
+import TeacherPayments from "../teacher_payments";
+import StudentMarks from "./stuallmarks";
+import Homework from "./Homework";
 const { Header, Sider, Content } = Layout;
 
 
-const { SubMenu } = Menu;
+//const { Menu } = Menu;
 
 const menuItems = [
   {
-    key: 'mykids',
-    icon: <SolutionOutlined />,
-    label: 'Mykids',
+    key: 'TeachAllStd',
+    icon: <SolutionOutlined/>,
+    label: 'TeachAllStd',
   },
   {
     key:'Results',
+    label:'Deatailed Analysis',
+  },
+  {
+    key:'IndividualResults',
+    icon:'🤨',
+    label:'IndividualResults',
+  },
+  {
+    key:'Event',
+    icon:"📢",
+    label:'Events',
+  },
+  {
+    key:'StudentDetails',
     icon:<UserOutlined/>,
-    label:'Results',
+    label:'StudentDetails',
   },
   {
-    key:'Separateresults',
-    label:'Separateresults',
+    key:'Timetable',
+    icon:<FormOutlined/>,
+    label:'Timetable',
   },
   {
-    key:'fee',
-    label:'Fee',
+    key:'TeacherProfile',
+    icon:<UserOutlined/>,
+    label:'TeacherProfile',
   },
   {
-    key:'attendence',
-    label:'Attendencee',
+    key:'Att',
+    icon:<UserOutlined/>,
+    label:'Attendence',
   },
   {
-    key:'StudentHomework',
-    label:'StudentHomework',
+    key:'Homework',
+    icon:<FormOutlined/>,
+    label:'Home Work',
   },
+  
 ]
-const ParentMain = () => {
+
+const MainTeacher = () => {
   const history = useNavigate();
   const [selectedTab, setSelectedTab] = useState('dashboard-admin')
 
@@ -89,8 +109,8 @@ const ParentMain = () => {
           onClick={handleMenuClick}
           defaultSelectedKeys={['dashboard-admin']}
         >
-          <SubMenu key="student details" icon={<UserOutlined />} title="student details">
-          </SubMenu>
+          <Menu key="student details" icon={<UserOutlined />} title="Student Details">
+          </Menu>
           {menuItems.map((item) => (
             <Menu.Item key={item.key} icon={item.icon}>
               {item.label}
@@ -123,13 +143,17 @@ const ParentMain = () => {
           }}
         >
 
-          {(selectedTab === 'fee') && <FeePaymentForm />}
-          {(selectedTab === 'ptabs') && <PTabs/>}
-          {(selectedTab === 'mykids') && <Mykids/>}
-          {(selectedTab === 'attendence') &&<Attendence/>}
-          {(selectedTab === 'Results') &&<Results/>}
-          {(selectedTab === 'Separateresults') &&<Separateresults/>}
-          {(selectedTab === 'StudentHomework') &&<StudentHomework/>}
+          {(selectedTab === 'TeachAllStd') && <TeacherAllStd/>}
+          {(selectedTab === 'Event') && <Event/>}
+          {(selectedTab === 'StudentDetails') && <StudentDetails/>}
+          {(selectedTab === 'Timetable') && <Timetable/>}
+          {(selectedTab === 'Results') && <Results/>}
+          {(selectedTab === 'IndividualResults') && <StudentMarks/>}
+          {(selectedTab === 'TeacherProfile') && <TeacherPayments/>}
+          {(selectedTab === 'Att') && <Attend/>}
+          {(selectedTab === 'Homework') && <Homework/>}
+
+          
           
 
         </Content>
@@ -137,5 +161,4 @@ const ParentMain = () => {
     </Layout>
   );
 };
-export default ParentMain;
-
+export default MainTeacher;

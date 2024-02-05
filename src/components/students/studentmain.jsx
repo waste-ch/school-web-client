@@ -8,103 +8,53 @@ import {
   //TeamOutlined, FormOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
-import './dashboard.component.css';
+//import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
-import Expenceschart from '../admin/Expenceschart';
-import Admin from '../admin/admin';
-import StudentAnalysis from '../students/students';
-import ParentMain from '../parents/std_attendence';
-import AdminResults from './adminresults';
 import Event from '../teachers/maint/Events';
-import Attend from '../teachers/maint/Attend';
-import TransportForm from './transport';
-import EarningForm from '../admin/earnimg';
-import NonTeaching from '../admin/nonteach';
-import Library from '../admin/library';
+import AllStudentsTab from './all_students';
+import StudentAnalysis from '../students/students';
+import Timetable from '../teachers/maint/timetable';
+import FeePage from '../parents/fee';
+import Results from '../parents/results';
+import StudentHomework from './Std_Homework';
 const { Header, Sider, Content } = Layout;
-
 
 const { SubMenu } = Menu;
 
 const subMenuItems = [
   {
-    key: 'dashboard-admin',
+    key: 'AllStudentsTab',
     icon: <UserOutlined />,
-    label: 'Admin',
+    label: 'AllStudentsTab',
   },
   {
-    key: 'dashboard-students',
+    key: 'StudentAnalysis',
     icon: <SolutionOutlined />,
-    label: 'Students',
+    label: 'StudentAnalysis',
   },
   {
-    key: 'students',
+    key: 'Event',
     icon: <UsergroupAddOutlined />,
-    label: 'Parents',
+    label: 'Event',
+  },
+  {
+    key:'Timetable',
+    label:'Timetable',
+  },
+  {
+    key:'Fee',
+    label:'Fee',
   },
   {
     key:'Results',
     label:'Results',
   },
   {
-    key:'Expences',
-    label:'Expences',
-  },
-  {
-    key:'Event',
-    label:'Event',
-  },
-  {
-    key:'Attend',
-    label:'Attendece',
-  },
-  {
-    key:'Transport',
-    label:'Transport',
-  },
-  {
-    key:'EarningForm',
-    label:'EarningForm',
-  },
-  {
-    key:'NonTeaching',
-    label:'Non Teaching',
-  },
-  {
-    key:'Hostel',
-    label:'Hostel',
-  },
-  {
-    key:'Library',
-    label:'📚Library',
-  },
-
-]
-/*
-const menuItems = [
-  {
-    key: 'students',
-    icon: <SolutionOutlined />,
-    label: 'Students',
-  },
-  {
-    key: 'parents',
-    icon: <UsergroupAddOutlined />,
-    label: 'Parents',
-  },
-  {
-    key: 'teachers',
-    icon: <TeamOutlined />,
-    label: 'Teachers',
-  },
-  {
-    key: 'exam',
-    icon: <FormOutlined />,
-    label: 'Exam',
+    key:'StudentHomework',
+    label:'StudentHomework',
   },
 ]
-*/
-const Dash = () => {
+const StudentApp = () => {
   const history = useNavigate();
   const [selectedTab, setSelectedTab] = useState('dashboard-admin')
 
@@ -121,9 +71,6 @@ const Dash = () => {
   const handleLogout = () => {
     history('/')
   }
-
-
-
   return (
     <Layout className='dashboard-container'>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -177,21 +124,24 @@ const Dash = () => {
             background: colorBgContainer,
           }}
         >
-          {(selectedTab === 'dashboard-admin') && < Admin/>}
-          {(selectedTab === 'dashboard-students') && <StudentAnalysis />}
-          {(selectedTab === 'students') && <ParentMain />}
-          {(selectedTab === 'Results') && <AdminResults />}
-          {(selectedTab === 'Expences') && <Expenceschart />}
-          {(selectedTab === 'Event') && <Event />}
-          {(selectedTab === 'Attend') && <Attend />}
-          {(selectedTab === 'Transport') && <TransportForm />}
-          {(selectedTab === 'EarningForm') && <EarningForm />}
-          {(selectedTab === 'NonTeaching') && <NonTeaching/>}
-          {(selectedTab === 'Library') && <Library/>}
+          {(selectedTab === 'AllStudentsTab') && <AllStudentsTab/>}
+          {(selectedTab === 'StudentAnalysis') && <StudentAnalysis/>}
+          {(selectedTab === 'Event') && <Event/>}
+          {(selectedTab === 'Timetable') && <Timetable/>}
+          {(selectedTab === 'Fee') && <FeePage />}
+          {(selectedTab === 'Results') && <Results />}
+          {(selectedTab === 'StudentHomework') && <StudentHomework />}
+
+
 
         </Content>
       </Layout>
     </Layout>
   );
 };
-export default Dash;
+export default StudentApp;
+/*{menuItems.map((item) => (
+            <Menu.Item key={item.key} icon={item.icon}>
+              {item.label}
+            </Menu.Item>
+          ))}*/

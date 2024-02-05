@@ -1,8 +1,13 @@
 // src/components/Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 //import { useNavigate } from 'react-router-dom';
 import './teacher.css';
 const TeacherLogin = () => {
+  const navigate=useNavigate();
+  function goToMainTeacher(){
+    navigate('/MainTeacher');
+  }
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   //const navigate = useNavigate();
@@ -44,7 +49,7 @@ const TeacherLogin = () => {
           />
         </label>
         <br />
-        <button type="button">
+        <button type="button" onClick={goToMainTeacher}>
           Login
         </button>
       </form>

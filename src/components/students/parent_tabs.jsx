@@ -6,7 +6,7 @@ import AdmissionFormTab from './admission_form';
 
 const { TabPane } = Tabs;
 
-const StudentTabs = () => {
+const ParentTabs = () => {
     return (
         <Tabs defaultActiveKey="1" tabBarGutter={30}>
             <TabPane tab="All Students" key="1">
@@ -22,4 +22,4 @@ const StudentTabs = () => {
     );
 }
 
-export default StudentTabs;
+export default ParentTabs;
