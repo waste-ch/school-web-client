@@ -5,7 +5,7 @@ import {
   UserOutlined,
   SolutionOutlined,
   UsergroupAddOutlined,
-  //TeamOutlined, FormOutlined
+  TeamOutlined, FormOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import './dashboard.component.css';
@@ -44,10 +44,12 @@ const subMenuItems = [
   },
   {
     key:'Results',
+    icon:<TeamOutlined/>,
     label:'Results',
   },
   {
     key:'Expences',
+    icon:<FormOutlined/>,
     label:'Expences',
   },
   {

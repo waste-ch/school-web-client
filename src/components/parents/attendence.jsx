@@ -1,25 +1,53 @@
-import { Calendar } from "antd";
+import React, { useState } from 'react';
+import { Calendar, Card, Statistic, Row, Col } from 'antd';
 
-export default function Attendence() {
-  function onPanelChange(value, mode) {
-    console.log(value, mode);
-  }
+function Attendence() {
+  const [ setSelectedDate] = useState(null);
+  const [attendanceData,] = useState({});
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    // Your logic for handling date change and updating attendance data goes here
+  };
+
+  // Example: Replace with your actual attendance data
+  const getDayStatus = (date) => {
+    // Replace this logic with your actual data fetching or calculation
+    // For demonstration purposes, we'll assume random data
+    return Math.random() < 0.7 ? 'present' : 'absent';
+  };
+
+  const dateCellRender = (value) => {
+    const dayStatus = attendanceData[value.format('YYYY-MM-DD')] || getDayStatus(value);
+
+    return (
+      <div style={{ textAlign: 'center' }}>
+        {dayStatus === 'present' && <span style={{ color: 'green' }}>●</span>}
+        {dayStatus === 'absent' && <span style={{ color: 'red' }}>●</span>}
+      </div>
+    );
+  };
 
   return (
-    <>
-      <div style={{ width: 290, border: "1px solid #d9d9d9", borderRadius: 4 }}>
-        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
-      </div>
-
-      <div className="Attendence-container">
-        <div>
-          <p> Total Number of Working Days 24.</p>
-        </div>
-        <div>
-          <div> Total Absent 03 </div>
-          <div>Total present 21 </div>
-        </div>
-      </div>
-    </>
+    <div>
+      <Card title="Student Attendance View">
+        <Row gutter={16}>
+          <Col span={12}>
+            <Calendar
+              onChange={handleDateChange}
+              dateCellRender={dateCellRender}
+            />
+          </Col>
+          <Col span={12}>
+            <div style={{ textAlign: 'center' }}>
+              <Statistic title="Present Days" value={15} />
+              <Statistic title="Absent Days" value={5} />
+            </div>
+          </Col>
+        </Row>
+      </Card>
+    </div>
   );
 }
+
+export default Attendence;

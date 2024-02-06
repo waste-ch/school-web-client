@@ -1,97 +1,102 @@
 import React, { useState } from 'react';
+import { Form, Button, Table, DatePicker, Input, Space } from 'antd';
 
 const EarningForm = () => {
-  const [earningInfo, setEarningInfo] = useState({
-    date: '',
-    studentName: '',
-    rollNumber: '',
-    totalEarnings: 0,
-    additionalEarnings: [],
-  });
+  const [form] = Form.useForm();
+  const [earnings, setEarnings] = useState([]); // State to store the list of earnings
 
-  const handleAddEarning = () => {
-    setEarningInfo((prevInfo) => ({
-      ...prevInfo,
-      additionalEarnings: [
-        ...prevInfo.additionalEarnings,
-        { date: '', studentName: '', rollNumber: '', amount: 0 },
-      ],
-    }));
+  const onFinish = (values) => {
+    // Add the new earning to the list
+    setEarnings([...earnings, { key: Date.now(), ...values }]);
+    // Reset the form fields
+    form.resetFields();
   };
 
-  const handleEarningChange = (index, field, value) => {
-    setEarningInfo((prevInfo) => {
-      const updatedEarnings = [...prevInfo.additionalEarnings];
-      updatedEarnings[index][field] = value;
-      return { ...prevInfo, additionalEarnings: updatedEarnings };
-    });
+  const handleDelete = (record) => {
+    // Remove the selected earning from the list
+    const updatedEarnings = earnings.filter((earning) => earning.key !== record.key);
+    setEarnings(updatedEarnings);
   };
 
-  const handleTotalEarnings = () => {
-    const total = earningInfo.additionalEarnings.reduce((acc, earning) => acc + earning.amount, 0);
-    setEarningInfo((prevInfo) => ({ ...prevInfo, totalEarnings: total }));
-  };
+  const columns = [
+    { title: 'ID', dataIndex: 'id', key: 'id', editable: true },
+    { title: 'Student Name', dataIndex: 'studentName', key: 'studentName', editable: true },
+    { title: 'Date of Earning', dataIndex: 'earningDate', key: 'earningDate', editable: true },
+    { title: 'Type of Earning', dataIndex: 'earningType', key: 'earningType', editable: true },
+    { title: 'Amount Earned', dataIndex: 'amountEarned', key: 'amountEarned' },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <button type="button" onClick={() => handleDelete(record)}>
+            Delete
+          </button>
+        </Space>
+      ),
+    },
+  ];
+
+  const totalSum = earnings.reduce((acc, curr) => acc + parseFloat(curr.amountEarned || 0), 0);
 
   return (
     <div>
-      <h1>Earning Form</h1>
-      <form>
-        <label>
-          Date:
-          <input
-            type="date"
-            value={earningInfo.date}
-            onChange={(e) => setEarningInfo({ ...earningInfo, date: e.target.value })}
-          />
-        </label>
-        <br />
+      {/* Calendar */}
 
-        <label>
-          Student Name:
-          <input
-            type="text"
-            value={earningInfo.studentName}
-            onChange={(e) => setEarningInfo({ ...earningInfo, studentName: e.target.value })}
-          />
-        </label>
-        <br />
+      {/* Earning Form */}
+      <Form
+        form={form}
+        name="earningForm"
+        onFinish={onFinish}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+      >
+        {/* ID */}
+        <Form.Item label="ID" name="id" initialValue={earnings.length}>
+          <Input/>
+        </Form.Item>
 
-        <label>
-          Roll Number:
-          <input
-            type="text"
-            value={earningInfo.rollNumber}
-            onChange={(e) => setEarningInfo({ ...earningInfo, rollNumber: e.target.value })}
-          />
-        </label>
-        <br />
+        {/* Student Name */}
+        <Form.Item label="Student Name" name="studentName" rules={[{ required: true, message: 'Please enter student name!' }]}>
+          <Input />
+        </Form.Item>
 
-        <label>Total Earnings: ${earningInfo.totalEarnings.toFixed(2)}</label>
-        <br />
+        {/* Date of Earning */}
+        <Form.Item label="Date of Earning" name="earningDate" rules={[{ required: true, message: 'Please select date of earning!' }]}>
+          <DatePicker />
+        </Form.Item>
 
-        <label>Additional Earnings:</label>
-        {earningInfo.additionalEarnings.map((earning, index) => (
-          <div key={index}>
-            <label>
-              Amount:
-              <input
-                type="number"
-                value={earning.amount}
-                onChange={(e) => handleEarningChange(index, 'amount', parseFloat(e.target.value))}
-              />
-            </label>
-          </div>
-        ))}
+        {/* Type of Earning */}
+        <Form.Item label="Type of Earning" name="earningType" rules={[{ required: true, message: 'Please select type of earning!' }]}>
+          <Input />
+        </Form.Item>
 
-        <button type="button" onClick={handleAddEarning}>
-          Add Earning
-        </button>
-        <br />
+        {/* Amount Earned */}
+        <Form.Item label="Amount Earned" name="amountEarned" rules={[{ required: true, message: 'Please enter the amount earned!' }]}>
+          <Input type="number" />
+        </Form.Item>
 
-        <button type="button" onClick={handleTotalEarnings}>
-          Calculate Total Earnings
-        </button>
-      </form>
+        {/* Submit Button */}
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Add Earning
+          </Button>
+        </Form.Item>
+      </Form>
+
+      {/* Earning Table */}
+      <Table
+        dataSource={earnings}
+        columns={columns}
+        pagination={false}
+        style={{ marginTop: '20px' }}
+        rowKey={(record) => record.key}
+      />
+
+      {/* Total Sum */}
+      <div style={{ marginTop: '20px' }}>
+        <strong>Total Sum:</strong> ₹{totalSum.toFixed(2)}
+      </div>
     </div>
   );
 };

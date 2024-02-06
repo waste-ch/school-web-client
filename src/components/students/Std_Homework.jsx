@@ -1,65 +1,55 @@
 import React, { useState } from 'react';
+import { Table, Space, Button } from 'antd';
+//~import 'antd/dist/antd.css';
 
 const StudentHomework = () => {
-  const initialSubjects = [
-    { id: 1, subject: "Math", homework: "Solve the quadratic equations." },
-    { id: 2, subject: "Science", homework: "Write a report on photosynthesis." },
-    { id: 3, subject: "History", homework: "Research and summarize an event from World War II." },
+  const [data] = useState([
+    {
+      key: '1',
+      subject: 'Math',
+      homework: 'Complete exercises 1-5',
+    },
+    {
+      key: '2',
+      subject: 'Science',
+      homework: 'Read chapter 3 and answer questions',
+    },
+    // Add more subjects and homework entries as needed
+  ]);
+
+  const columns = [
+    {
+      title: 'Subject',
+      dataIndex: 'subject',
+      key: 'subject',
+    },
+    {
+      title: 'Homework',
+      dataIndex: 'homework',
+      key: 'homework',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          <Button onClick={() => handleClick(record)}>Edit</Button>
+          <Button onClick={() => handleClick(record)}>Delete</Button>
+        </Space>
+      ),
+    },
   ];
 
-  const [subjects, setSubjects] = useState(initialSubjects);
-  const [editingSubjectId, setEditingSubjectId] = useState(null);
-  //const [newSubject, setNewSubject] = useState({ subject: "", homework: "" });
-
-  const handleSaveClick = (id, editedHomework) => {
-    setSubjects((prevSubjects) =>
-      prevSubjects.map((subject) =>
-        subject.id === id ? { ...subject, homework: editedHomework } : subject
-      )
-    );
-    setEditingSubjectId(null);
+  // Define the handleClick function
+  const handleClick = (record) => {
+    // Your logic for handling click events goes here
+    console.log('Button clicked!', record);
   };
 
-
-
   return (
-    <div className="table-container">
-      <h1>Student Homework Table</h1>
-
-      <table border="1px"> 
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Subject</th>
-            <th>Homework</th>
-          </tr>
-        </thead>
-        <tbody>
-          {subjects.map((subject) => (
-            <tr key={subject.id}>
-              <td>{subject.id}</td>
-              <td>{subject.subject}</td>
-              <td>
-                {editingSubjectId === subject.id ? (
-                  <textarea
-                    rows="4"
-                    cols="30"
-                    value={subject.homework}
-                    onChange={(e) => handleSaveClick(subject.id, e.target.value)}
-                  />
-                ) : (
-                  <p>{subject.homework}</p>
-                )}
-              </td>
-              
-            </tr>
-          ))}
-        </tbody>
-       
-      </table>
-      
+    <div>
+      <Table dataSource={data} columns={columns} />
     </div>
-    
   );
 };
 
