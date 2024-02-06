@@ -11,6 +11,7 @@ import { getTokenFC } from './firebase';
 import { notification } from 'antd';
 import ParentLogin from './components/parents/ParentLogin';
 import TeacherLogin from './components/teachers/teacher_login';
+import StudentLogin from './components/students/stu_login';
 import Std from './components/parents/std_attendence';
 //import MainTeach from './components/teachers/MainTeacher';
 import MainTeacher from './components/teachers/maint/MainTeacher';
@@ -19,7 +20,8 @@ import Timetable from './components/teachers/maint/timetable';
 import Fa1 from './components/teachers/maint/allexamresults.jsx/fa1results';
 //import AdminDashBoard from './components/dashboard/AdminDashboard';
 import StudentTabs from './components/students';
-import Dash from './components/dashboard/dashboard.component';
+//import Admin from './components/admin/admin';
+import Dash from './components/dashboard/admin1';
 import TransportForm from './components/dashboard/transport';
 import EarningForm from './components/admin/earnimg';
 import NonTeaching from './components/admin/nonteach';
@@ -83,6 +85,7 @@ const App = () => {
         <Route path="*" element={<NoMatch />} />
         <Route path='/ParentLogin' element= {<ParentLogin/>} />
         <Route path='/TeacherLogin' element= {<TeacherLogin/>} />
+        <Route path='/StudentLogin' element= {<StudentLogin/>} />
         <Route path='/MainTeacher' element= {<MainTeacher/>} />
         <Route path='/Event' element= {<Event/>} />
         <Route path='/Std' element= {<Std/>} />
@@ -94,11 +97,7 @@ const App = () => {
         <Route path='/EarningForm' element= {<EarningForm/>} />
         <Route path='/NonTeaching' element= {<NonTeaching/>} />
         <Route path='/Library' element= {<Library/>} />
-
-
-        
         </Routes> 
-
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} Sunshine Valley Academy. All rights reserved.</p>
       </footer>

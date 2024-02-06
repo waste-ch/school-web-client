@@ -1,2 +1,2 @@
-import App from "./dashboard.component";
+import App from "./admin1";
 export default App;

@@ -10,7 +10,6 @@ const ParentLogin = () => {
   function goToStd(){
     navigate("/Std");
   }
-
   /*const handleLogin = () => {
     // Perform authentication logic here
 

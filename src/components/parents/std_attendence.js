@@ -19,6 +19,9 @@ import Attendence from './attendence';
 import Results from './results';
 import Separateresults from './separateresults';
 import StudentHomework from '../students/Std_Homework';
+import Gallery from './gallary';
+import Timetable from '../students/studentexamtimetable';
+import SchoolNews from '../students/schoolnews';
 const { Header, Sider, Content } = Layout;
 
 
@@ -50,6 +53,18 @@ const menuItems = [
   {
     key:'StudentHomework',
     label:'StudentHomework',
+  },
+  {
+    key:'SchoolNews',
+    label:'SchoolNews',
+  },
+  {
+    key:'Gallery',
+    label:'Gallery',
+  },
+  {
+    key:'Timetable',
+    label:'Timetable',
   },
 ]
 const ParentMain = () => {
@@ -130,6 +145,10 @@ const ParentMain = () => {
           {(selectedTab === 'Results') &&<Results/>}
           {(selectedTab === 'Separateresults') &&<Separateresults/>}
           {(selectedTab === 'StudentHomework') &&<StudentHomework/>}
+          {(selectedTab === 'Gallery') &&<Gallery/>}
+          {(selectedTab === 'Timetable') &&<Timetable/>}
+          {(selectedTab === 'SchoolNews') &&<SchoolNews/>}
+
           
 
         </Content>

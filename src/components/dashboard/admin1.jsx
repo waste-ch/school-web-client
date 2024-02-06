@@ -11,7 +11,7 @@ import { Layout, Menu, Button, theme, Image } from 'antd';
 import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
 import Expenceschart from '../admin/Expenceschart';
-import Admin from '../admin/admin';
+//import Admin from '../admin/admin';
 import StudentAnalysis from '../students/students';
 import ParentMain from '../parents/std_attendence';
 import AdminResults from './adminresults';
@@ -20,18 +20,21 @@ import Attend from '../teachers/maint/Attend';
 import TransportForm from './transport';
 import EarningForm from '../admin/earnimg';
 import NonTeaching from '../admin/nonteach';
-import Library from '../admin/library';
+import Uploadbooks from '../teachers/adminteacherlib';
+import Photoupload from '../teachers/maint/teachergallary';
+import Timetable from '../teachers/maint/timetable';
+import DailyRoutine from '../teachers/maint/teacherschedule';
+import FeedbackReceivedPage from '../admin/adminfeedback';
+import SchoolNewsPage from '../admin/adminews';
 const { Header, Sider, Content } = Layout;
-
-
 const { SubMenu } = Menu;
 
 const subMenuItems = [
-  {
+  /*{
     key: 'dashboard-admin',
     icon: <UserOutlined />,
     label: 'Admin',
-  },
+  },*/
   {
     key: 'dashboard-students',
     icon: <SolutionOutlined />,
@@ -41,6 +44,10 @@ const subMenuItems = [
     key: 'students',
     icon: <UsergroupAddOutlined />,
     label: 'Parents',
+  },
+  {
+    key:'Timetable',
+    label:'TimeTable',
   },
   {
     key:'Results',
@@ -65,6 +72,10 @@ const subMenuItems = [
     label:'Transport',
   },
   {
+    key:'SchoolNewsPage',
+    label:'SchoolNews',
+  },
+  {
     key:'EarningForm',
     label:'EarningForm',
   },
@@ -77,10 +88,21 @@ const subMenuItems = [
     label:'Hostel',
   },
   {
-    key:'Library',
+    key:'Uploadbooks',
     label:'📚Library',
   },
-
+{
+  key:'Photoupload',
+  label:'Gallary',
+},
+{
+  key:'DailyRoutine',
+  label:'DailyRoutine',
+},
+{
+  key:'FeedbackReceivedPage',
+  label:'Feedback',
+},
 ]
 /*
 const menuItems = [
@@ -179,7 +201,7 @@ const Dash = () => {
             background: colorBgContainer,
           }}
         >
-          {(selectedTab === 'dashboard-admin') && < Admin/>}
+          
           {(selectedTab === 'dashboard-students') && <StudentAnalysis />}
           {(selectedTab === 'students') && <ParentMain />}
           {(selectedTab === 'Results') && <AdminResults />}
@@ -189,7 +211,16 @@ const Dash = () => {
           {(selectedTab === 'Transport') && <TransportForm />}
           {(selectedTab === 'EarningForm') && <EarningForm />}
           {(selectedTab === 'NonTeaching') && <NonTeaching/>}
-          {(selectedTab === 'Library') && <Library/>}
+          {(selectedTab === 'Uploadbooks') && <Uploadbooks/>}
+          {(selectedTab === 'Photoupload') && <Photoupload/>}
+          {(selectedTab === 'Timetable') && <Timetable/>}
+          {(selectedTab === 'DailyRoutine') && <DailyRoutine/>}
+          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage/>}
+          {(selectedTab === 'FeedbackReceivedPage') && <FeedbackReceivedPage/>}
+
+          
+
+
 
         </Content>
       </Layout>

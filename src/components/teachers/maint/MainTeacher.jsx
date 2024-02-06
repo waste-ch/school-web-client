@@ -19,6 +19,10 @@ import StudentDetails from "../../students/studentdetails";
 import TeacherPayments from "../teacher_payments";
 import StudentMarks from "./stuallmarks";
 import Homework from "./Homework";
+import Uploadbooks from "../adminteacherlib";
+import Photoupload from "./teachergallary";
+import DailyRoutine from "./teacherschedule";
+import SchoolNewsPage from "../../admin/adminews";
 const { Header, Sider, Content } = Layout;
 
 
@@ -50,6 +54,10 @@ const menuItems = [
     label:'StudentDetails',
   },
   {
+    key:'DailyRoutine',
+    label:'DailyRoutine',
+  },
+  {
     key:'Timetable',
     icon:<FormOutlined/>,
     label:'Timetable',
@@ -69,7 +77,18 @@ const menuItems = [
     icon:<FormOutlined/>,
     label:'Home Work',
   },
-  
+  {
+    key:'Uploadbooks',
+    label:'Library',
+  },
+  {
+    key:'Photoupload',
+    label:'Gallary',
+  },
+  {
+    key:'SchoolNewsPage',
+    label:'SchoolNews',
+  },
 ]
 
 const MainTeacher = () => {
@@ -152,6 +171,11 @@ const MainTeacher = () => {
           {(selectedTab === 'TeacherProfile') && <TeacherPayments/>}
           {(selectedTab === 'Att') && <Attend/>}
           {(selectedTab === 'Homework') && <Homework/>}
+          {(selectedTab === 'Uploadbooks') && <Uploadbooks/>}
+          {(selectedTab === 'Photoupload') && <Photoupload/>}
+          {(selectedTab === 'DailyRoutine') && <DailyRoutine/>}
+          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage/>} 
+
 
           
           

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Table, Space, Button } from 'antd';
-//~import 'antd/dist/antd.css';
+import { Table, DatePicker } from 'antd';
+
 
 const StudentHomework = () => {
   const [data] = useState([
@@ -13,6 +13,21 @@ const StudentHomework = () => {
       key: '2',
       subject: 'Science',
       homework: 'Read chapter 3 and answer questions',
+    },
+    {
+      key: '3',
+      subject: 'English',
+      homework: 'Write a short essay on a given topic',
+    },
+    {
+      key: '4',
+      subject: 'History',
+      homework: 'Study for the upcoming quiz on World War II',
+    },
+    {
+      key: '5',
+      subject: 'Physics',
+      homework: 'Perform experiments 6 and 7 from the textbook',
     },
     // Add more subjects and homework entries as needed
   ]);
@@ -28,26 +43,14 @@ const StudentHomework = () => {
       dataIndex: 'homework',
       key: 'homework',
     },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Space size="middle">
-          <Button onClick={() => handleClick(record)}>Edit</Button>
-          <Button onClick={() => handleClick(record)}>Delete</Button>
-        </Space>
-      ),
-    },
+    // Remove the entire "Action" column
   ];
-
-  // Define the handleClick function
-  const handleClick = (record) => {
-    // Your logic for handling click events goes here
-    console.log('Button clicked!', record);
-  };
 
   return (
     <div>
+      <div style={{ marginBottom: 16 }}>
+        <DatePicker />
+      </div>
       <Table dataSource={data} columns={columns} />
     </div>
   );

@@ -1,131 +1,141 @@
 import React, { useState } from 'react';
+import { Table, Space, Button, Select,  } from 'antd';
+//import 'antd/dist/antd.css';
 
 const Homework = () => {
-  const initialSubjects = [
-    { id: 1, subject: "Math", homework: "Solve the quadratic equations." },
-    { id: 2, subject: "Science", homework: "Write a report on photosynthesis." },
-    { id: 3, subject: "History", homework: "Research and summarize an event from World War II." },
+  const [data, setData] = useState([
+    {
+      key: '1',
+      subject: 'Math',
+      homework: 'Complete exercises 1-5',
+    },
+    {
+      key: '2',
+      subject: 'Science',
+      homework: 'Read chapter 3 and answer questions',
+    },
+    {
+      key: '3',
+      subject: 'English',
+      homework: 'Write a short essay on a given topic',
+    },
+    {
+      key: '4',
+      subject: 'History',
+      homework: 'Study for the upcoming quiz on World War II',
+    },
+    {
+      key: '5',
+      subject: 'Physics',
+      homework: 'Perform experiments 6 and 7 from the textbook',
+    },
+    // Add more subjects and homework entries as needed
+  ]);
+
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
+  const [editingKey, setEditingKey] = useState('');
+
+  const columns = [
+    {
+      title: 'Subject',
+      dataIndex: 'subject',
+      key: 'subject',
+    },
+    {
+      title: 'Homework',
+      dataIndex: 'homework',
+      key: 'homework',
+      editable: true,
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          {editingKey !== record.key ? (
+            <Button onClick={() => handleEdit(record.key)}>Edit</Button>
+          ) : (
+            <Button type="primary" onClick={() => handleSave(record.key)}>Save</Button>
+          )}
+          <Button onClick={() => handleDelete(record.key)}>Delete</Button>
+        </Space>
+      ),
+    },
   ];
 
-  const [subjects, setSubjects] = useState(initialSubjects);
-  const [editingSubjectId, setEditingSubjectId] = useState(null);
-  const [newSubject, setNewSubject] = useState({ subject: "", homework: "" });
-
-  const handleEditClick = (id) => {
-    setEditingSubjectId(id);
+  const handleAddRow = () => {
+    const newData = [
+      ...data,
+      { key: (data.length + 1).toString(), subject: 'New Subject', homework: 'New Homework' },
+    ];
+    setData(newData);
   };
 
-  const handleSaveClick = (id, editedHomework) => {
-    setSubjects((prevSubjects) =>
-      prevSubjects.map((subject) =>
-        subject.id === id ? { ...subject, homework: editedHomework } : subject
-      )
-    );
-    setEditingSubjectId(null);
+  const handleEdit = (key) => {
+    setEditingKey(key);
   };
 
-  const handleCancelClick = () => {
-    setEditingSubjectId(null);
+  const handleSave = (key) => {
+    const newData = [...data];
+    const index = newData.findIndex((item) => key === item.key);
+    if (index > -1) {
+      const item = newData[index];
+      newData.splice(index, 1, { ...item, ...{ editing: false } });
+      setData(newData);
+      setEditingKey('');
+    } else {
+      console.error('Item not found in data array.');
+    }
   };
 
-  const handleInputChange = (e, field) => {
-    setNewSubject((prevNewSubject) => ({ ...prevNewSubject, [field]: e.target.value }));
+  const handleDelete = (key) => {
+    const newData = data.filter((item) => item.key !== key);
+    setData(newData);
+    setEditingKey(''); // Cancel editing if the deleted row is being edited
   };
 
-  const handleAddRowClick = () => {
-    setSubjects((prevSubjects) => [
-      ...prevSubjects,
-      { id: prevSubjects.length + 1, ...newSubject },
-    ]);
-    setNewSubject({ subject: "", homework: "" });
+  const handleClassChange = (value) => {
+    setSelectedClass(value);
+  };
+
+  const handleSectionChange = (value) => {
+    setSelectedSection(value);
   };
 
   return (
-    <div className="table-container">
-      <h1>Student Homework Table</h1>
-      <label for="classSelect">Select a class:</label>
-    <select id="classSelect" name="classSelect">
-    <option value="class1">Class 1</option>
-    <option value="class2">Class 2</option>
-    <option value="class3">Class 3</option></select>
-
-    <label for="classSelect">Select a Section:</label>
-    <select id="classSelect" name="classSelect">
-    <option value="class1">A</option>
-    <option value="class2">B</option>
-    <option value="class3">C</option>
- 
-</select>
-
-      <label for="dateInput">Select a date:</label>
-        <input type="date" id="dateInput" name="dateInput"/>
-      <table border="1px"> 
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Subject</th>
-            <th>Homework</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {subjects.map((subject) => (
-            <tr key={subject.id}>
-              <td>{subject.id}</td>
-              <td>{subject.subject}</td>
-              <td>
-                {editingSubjectId === subject.id ? (
-                  <textarea
-                    rows="4"
-                    cols="30"
-                    value={subject.homework}
-                    onChange={(e) => handleSaveClick(subject.id, e.target.value)}
-                  />
-                ) : (
-                  <p>{subject.homework}</p>
-                )}
-              </td>
-              <td>
-                {editingSubjectId === subject.id ? (
-                  <>
-                    <button onClick={() => handleSaveClick(subject.id, subject.homework)}>
-                      Save
-                    </button>
-                    <button onClick={handleCancelClick}>Cancel</button>
-                  </>
-                ) : (
-                  <button onClick={() => handleEditClick(subject.id)}>Edit</button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>{subjects.length + 1}</td>
-            <td>
-              <input
-                type="text"
-                value={newSubject.subject}
-                onChange={(e) => handleInputChange(e, 'subject')}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={newSubject.homework}
-                onChange={(e) => handleInputChange(e, 'homework')}
-              />
-            </td>
-            <td>
-              <button onClick={handleAddRowClick}>Add New Row</button>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      
+    <div>
+      <div style={{ marginBottom: 16 }}>
+        <Button type="primary" onClick={handleAddRow}>
+          Add New Row
+        </Button>
+        <Select
+          placeholder="Select Class"
+          value={selectedClass}
+          onChange={handleClassChange}
+          style={{ marginLeft: 16, width: 120 }}
+        >
+          <Select.Option value="Class1">Class 1</Select.Option>
+          <Select.Option value="Class2">Class 2</Select.Option>
+        </Select>
+        <Select
+          placeholder="Select Section"
+          value={selectedSection}
+          onChange={handleSectionChange}
+          style={{ marginLeft: 16, width: 120 }}
+        >
+          <Select.Option value="SectionA">Section A</Select.Option>
+          <Select.Option value="SectionB">Section B</Select.Option>
+        </Select>
+      </div>
+      <Table
+        dataSource={data}
+        columns={columns}
+        bordered
+        rowKey={(record) => record.key}
+        pagination={{ pageSize: 5 }}
+      />
     </div>
-    
   );
 };
 

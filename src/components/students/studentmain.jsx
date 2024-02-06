@@ -11,22 +11,23 @@ import { Layout, Menu, Button, theme, Image } from 'antd';
 //import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
 import Event from '../teachers/maint/Events';
-import AllStudentsTab from './all_students';
 import StudentAnalysis from '../students/students';
-import Timetable from '../teachers/maint/timetable';
+import Timetable from './studentexamtimetable';
 import FeePage from '../parents/fee';
 import Results from '../parents/results';
 import StudentHomework from './Std_Homework';
+import Attendence from '../parents/attendence';
+import Library from './library';
+import Gallery from '../parents/gallary';
+import DailyRoutine from './dailyschedule';
+import StudentProfile from './stdprofile';
+import FeedbackPage from './feedbackform';
+import SchoolNews from './schoolnews';
 const { Header, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
 
 const subMenuItems = [
-  {
-    key: 'AllStudentsTab',
-    icon: <UserOutlined />,
-    label: 'AllStudentsTab',
-  },
   {
     key: 'StudentAnalysis',
     icon: <SolutionOutlined />,
@@ -52,6 +53,34 @@ const subMenuItems = [
   {
     key:'StudentHomework',
     label:'StudentHomework',
+  },
+  {
+    key:'Attendence',
+    label:'Attendence',
+  },
+  {
+    key:'Library',
+    label:'Library',
+  },
+  {
+    key:'DailyRotuine',
+    label:'DailyRotuine',
+  },
+  {
+    key:'Gallery',
+    label:'Gallery',
+  },
+  {
+    key:'StudentProfile',
+    label:'My Profile',
+  },
+  {
+    key:'SchoolNews',
+    label:'SchoolNews',
+  },
+  {
+    key:'FeedbackPage',
+    label:'Feedback form',
   },
 ]
 const StudentApp = () => {
@@ -124,13 +153,21 @@ const StudentApp = () => {
             background: colorBgContainer,
           }}
         >
-          {(selectedTab === 'AllStudentsTab') && <AllStudentsTab/>}
           {(selectedTab === 'StudentAnalysis') && <StudentAnalysis/>}
           {(selectedTab === 'Event') && <Event/>}
           {(selectedTab === 'Timetable') && <Timetable/>}
           {(selectedTab === 'Fee') && <FeePage />}
           {(selectedTab === 'Results') && <Results />}
           {(selectedTab === 'StudentHomework') && <StudentHomework />}
+          {(selectedTab === 'Attendence') && <Attendence />}
+          {(selectedTab === 'Library') && <Library />}
+          {(selectedTab === 'Gallery') && <Gallery />}
+          {(selectedTab === 'DailyRotuine') && <DailyRoutine/>}
+          {(selectedTab === 'StudentProfile') && <StudentProfile/>}
+          {(selectedTab === 'FeedbackPage') && <FeedbackPage/>}
+          {(selectedTab === 'SchoolNews') && <SchoolNews/>}
+
+          
 
 
 
