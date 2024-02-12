@@ -201,7 +201,7 @@ const cardRender = cardData.map((item, index) => (
   </Card>
 ));
 
-const Parents = () => {
+const Studentalldetails = () => {
   return (
     <>
       <Title level={2}>Parents</Title>
@@ -238,4 +238,4 @@ const Parents = () => {
   );
 };
 
-export default Parents;
+export default Studentalldetails;

@@ -1,0 +1,21 @@
+/* Timetable.css */
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .timetable th,
+  .timetable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .subject {
+    font-weight: bold;
+  }
+  
+  .teacher {
+    color: #555;
+  }
+  

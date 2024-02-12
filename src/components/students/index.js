@@ -1,3 +1,3 @@
-import StudentTabs from "./student_tabs";
+import StudentTabs from "./studentmain";
 
 export default StudentTabs

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Table, Avatar } from 'antd';
+import React, { useState } from 'react';
+import { Table, Avatar, Button, Drawer } from 'antd';
+import ParentForm from './parent_form'; // Assuming ParentForm is a separate component for adding parents
 
 const sampleData = [
     {
@@ -22,36 +23,7 @@ const sampleData = [
         phone: '987-654-3210',
         email: 'jane.doe@example.com',
     },
-    {
-        id: 3,
-        photo: 'https://example.com/photo3.jpg',
-        name: 'Sam Smith',
-        gender: 'Male',
-        occupation: 'Doctor',
-        address: '789 Pine St, Villagetown',
-        phone: '555-123-4567',
-        email: 'sam.smith@example.com',
-    },
-    {
-        id: 4,
-        photo: 'https://example.com/photo4.jpg',
-        name: 'Emma Johnson',
-        gender: 'Female',
-        occupation: 'Artist',
-        address: '567 Elm St, Hamletville',
-        phone: '333-789-0123',
-        email: 'emma.johnson@example.com',
-    },
-    {
-        id: 5,
-        photo: 'https://example.com/photo5.jpg',
-        name: 'Chris Brown',
-        gender: 'Male',
-        occupation: 'Software Developer',
-        address: '890 Maple St, Countryside',
-        phone: '777-234-5678',
-        email: 'chris.brown@example.com',
-    },
+    // Add more sample data as needed
 ];
 
 const columns = [
@@ -65,10 +37,35 @@ const columns = [
     { title: 'Email', dataIndex: 'email', key: 'email' },
 ];
 
-const AntdTableWithColumns = () => {
+const AllParents = () => {
+    const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+
+    const showDrawer = () => {
+        setIsDrawerVisible(true);
+    };
+
+    const closeDrawer = () => {
+        setIsDrawerVisible(false);
+    };
+
     return (
-        <Table dataSource={sampleData} columns={columns} pagination={false} bordered />
+        <div>
+            <Button type="primary" onClick={showDrawer} style={{ marginBottom: 16 }}>
+                Add Parent
+            </Button>
+            <Table dataSource={sampleData} columns={columns} pagination={false} bordered />
+
+            <Drawer
+                title="Add Parent"
+                width={700}
+                onClose={closeDrawer}
+                visible={isDrawerVisible}
+                destroyOnClose={true}
+            >
+                <ParentForm onClose={closeDrawer} />
+            </Drawer>
+        </div>
     );
 };
 
-export default AntdTableWithColumns;
+export default AllParents;

@@ -10,7 +10,6 @@
     max-width: 300px;
     margin: 10px;
 }
-
 .pie-chart:hover {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     /* New box shadow on hover */

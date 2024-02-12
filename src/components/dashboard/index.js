@@ -1,3 +1,2 @@
-import DashboardComponent from "./dashboard.component";
-
-export default DashboardComponent
+import App from "./admin1";
+export default App;

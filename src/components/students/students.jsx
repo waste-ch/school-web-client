@@ -9,7 +9,6 @@ import StudentDetails1 from './details';
 import StudentCharts from './student_charts';
 const { Title } = Typography;
 
-
 const columns = [
   {
     title: 'ID',
@@ -117,7 +116,7 @@ const cardRender = cardData.map((item, index) => (
   </Card>
 ));
 
-const StudentDetails = () => {
+const StudentAnalysis = () => {
   return (
     <>
       <Title level={2}>Students</Title>
@@ -153,4 +152,4 @@ const StudentDetails = () => {
   );
 };
 
-export default StudentDetails;
+export default StudentAnalysis;

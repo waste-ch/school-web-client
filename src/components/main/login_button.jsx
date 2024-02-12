@@ -2,22 +2,21 @@ import React from 'react';
 import { Dropdown, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
+
 const LoginButton = () => {
     const history = useNavigate();
-
-
     const menu = (
         <Menu>
             <Menu.Item key="admin" onClick={() => handleLogin('/admin/login')}>
-                Admin Login
+                Admin login
             </Menu.Item>
-            <Menu.Item key="user" onClick={() => handleLogin('/users/login')}>
+            <Menu.Item key="user" onClick={() => handleLogin('/StudentTabs')}>
                 Student Login
             </Menu.Item>
-            <Menu.Item key="driver" onClick={() => handleLogin('/driver/login')}>
+            <Menu.Item key="driver" onClick={() => handleLogin('/TeacherLogin')}>
                 Teacher Login
             </Menu.Item>
-            <Menu.Item key="driver" onClick={() => handleLogin('/driver/login')}>
+            <Menu.Item key="parent" onClick={() => handleLogin('/ParentLogin')}>
                 Parent Login
             </Menu.Item>
         </Menu>
