@@ -34,37 +34,37 @@ const menuItems = [
     label: 'Mykids',
   },
   {
-    key:'Results',
-    icon:<UserOutlined/>,
-    label:'Results',
+    key: 'Results',
+    icon: <UserOutlined />,
+    label: 'Results',
   },
   {
-    key:'Separateresults',
-    label:'Separateresults',
+    key: 'Separateresults',
+    label: 'Separateresults',
   },
   {
-    key:'fee',
-    label:'Fee',
+    key: 'fee',
+    label: 'Fee',
   },
   {
-    key:'attendence',
-    label:'Attendencee',
+    key: 'attendence',
+    label: 'Attendencee',
   },
   {
-    key:'StudentHomework',
-    label:'StudentHomework',
+    key: 'StudentHomework',
+    label: 'StudentHomework',
   },
   {
-    key:'SchoolNews',
-    label:'SchoolNews',
+    key: 'SchoolNews',
+    label: 'SchoolNews',
   },
   {
-    key:'Gallery',
-    label:'Gallery',
+    key: 'Gallery',
+    label: 'Gallery',
   },
   {
-    key:'Timetable',
-    label:'Timetable',
+    key: 'Timetable',
+    label: 'Timetable',
   },
 ]
 const ParentMain = () => {
@@ -90,9 +90,9 @@ const ParentMain = () => {
         <div className="demo-logo-vertical" >
           {/*TODO: change with original logo*/}
           <Image
-            className='logo-class'
-            src="https://img.freepik.com/free-vector/education-pen-concept_98292-5144.jpg?w=1480&t=st=1704774064~exp=1704774664~hmac=7e2a59f40e49bc687930287c3e4bea98cd700ee6f1ff3de19020cb2b8b4983f2"
-            alt="Description of the image"
+            className={collapsed ? 'collapsed-logo-class' : 'logo-class'}
+            src={process.env.PUBLIC_URL + '/school_image.png'}
+            alt="school image"
             style={{ width: '100%' }}
             preview={false}
           />
@@ -139,17 +139,17 @@ const ParentMain = () => {
         >
 
           {(selectedTab === 'fee') && <FeePaymentForm />}
-          {(selectedTab === 'ptabs') && <PTabs/>}
-          {(selectedTab === 'mykids') && <Mykids/>}
-          {(selectedTab === 'attendence') &&<Attendence/>}
-          {(selectedTab === 'Results') &&<Results/>}
-          {(selectedTab === 'Separateresults') &&<Separateresults/>}
-          {(selectedTab === 'StudentHomework') &&<StudentHomework/>}
-          {(selectedTab === 'Gallery') &&<Gallery/>}
-          {(selectedTab === 'Timetable') &&<Timetable/>}
-          {(selectedTab === 'SchoolNews') &&<SchoolNews/>}
+          {(selectedTab === 'ptabs') && <PTabs />}
+          {(selectedTab === 'mykids') && <Mykids />}
+          {(selectedTab === 'attendence') && <Attendence />}
+          {(selectedTab === 'Results') && <Results />}
+          {(selectedTab === 'Separateresults') && <Separateresults />}
+          {(selectedTab === 'StudentHomework') && <StudentHomework />}
+          {(selectedTab === 'Gallery') && <Gallery />}
+          {(selectedTab === 'Timetable') && <Timetable />}
+          {(selectedTab === 'SchoolNews') && <SchoolNews />}
 
-          
+
 
         </Content>
       </Layout>

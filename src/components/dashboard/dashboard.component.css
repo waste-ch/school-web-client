@@ -12,6 +12,10 @@
     width: 80px !important;
 }
 
+.collapsed-logo-class {
+    width: 40px !important;
+}
+
 .header-class {
     padding: 0
 }
@@ -19,7 +23,8 @@
 .button-class {
     font-size: 16px;
     width: 64;
-    height: 64
+    height: 64;
+    background: white
 }
 
 .content-class {

@@ -10,22 +10,22 @@ import {
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
-import Expenceschart from '../admin/Expenceschart';
+import Expenceschart from '../admin/expenses_chart';
 //import Admin from '../admin/admin';
 import StudentAnalysis from '../students/students';
-import ParentMain from '../parents/std_attendence';
+import ParentMain from '../parents/parents';
 import AdminResults from './adminresults';
-import Event from '../teachers/maint/Events';
-import Attend from '../teachers/maint/Attend';
+import Event from '../teachers/main/Events';
+import Attend from '../teachers/main/Attendance';
 import TransportForm from './transport';
-import EarningForm from '../admin/earnimg';
-import NonTeaching from '../admin/nonteach';
-import Uploadbooks from '../teachers/adminteacherlib';
-import Photoupload from '../teachers/maint/teachergallary';
-import Timetable from '../teachers/maint/timetable';
-import DailyRoutine from '../teachers/maint/teacherschedule';
-import FeedbackReceivedPage from '../admin/adminfeedback';
-import SchoolNewsPage from '../admin/adminews';
+import EarningForm from '../admin/earning';
+import NonTeaching from '../admin/non_teaching';
+import Uploadbooks from '../teachers/admin_teacher_lib';
+import Photoupload from '../teachers/main/teachers_gallery';
+import Timetable from '../teachers/main/timetable';
+import DailyRoutine from '../teachers/main/teachers_schedule';
+import FeedbackReceivedPage from '../admin/admin_feedback';
+import SchoolNewsPage from '../admin/school_news';
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -46,63 +46,63 @@ const subMenuItems = [
     label: 'Parents',
   },
   {
-    key:'Timetable',
-    label:'TimeTable',
+    key: 'Timetable',
+    label: 'TimeTable',
   },
   {
-    key:'Results',
-    icon:<TeamOutlined/>,
-    label:'Results',
+    key: 'Results',
+    icon: <TeamOutlined />,
+    label: 'Results',
   },
   {
-    key:'Expences',
-    icon:<FormOutlined/>,
-    label:'Expences',
+    key: 'Expences',
+    icon: <FormOutlined />,
+    label: 'Expences',
   },
   {
-    key:'Event',
-    label:'Event',
+    key: 'Event',
+    label: 'Event',
   },
   {
-    key:'Attend',
-    label:'Attendece',
+    key: 'Attend',
+    label: 'Attendece',
   },
   {
-    key:'Transport',
-    label:'Transport',
+    key: 'Transport',
+    label: 'Transport',
   },
   {
-    key:'SchoolNewsPage',
-    label:'SchoolNews',
+    key: 'SchoolNewsPage',
+    label: 'SchoolNews',
   },
   {
-    key:'EarningForm',
-    label:'EarningForm',
+    key: 'EarningForm',
+    label: 'EarningForm',
   },
   {
-    key:'NonTeaching',
-    label:'Non Teaching',
+    key: 'NonTeaching',
+    label: 'Non Teaching',
   },
   {
-    key:'Hostel',
-    label:'Hostel',
+    key: 'Hostel',
+    label: 'Hostel',
   },
   {
-    key:'Uploadbooks',
-    label:'📚Library',
+    key: 'Uploadbooks',
+    label: '📚Library',
   },
-{
-  key:'Photoupload',
-  label:'Gallary',
-},
-{
-  key:'DailyRoutine',
-  label:'DailyRoutine',
-},
-{
-  key:'FeedbackReceivedPage',
-  label:'Feedback',
-},
+  {
+    key: 'Photoupload',
+    label: 'Gallary',
+  },
+  {
+    key: 'DailyRoutine',
+    label: 'DailyRoutine',
+  },
+  {
+    key: 'FeedbackReceivedPage',
+    label: 'Feedback',
+  },
 ]
 /*
 const menuItems = [
@@ -154,8 +154,8 @@ const Dash = () => {
         <div className="demo-logo-vertical" >
           {/*TODO: change with original logo*/}
           <Image
-            className='logo-class'
-            src="https://img.freepik.com/free-vector/education-pen-concept_98292-5144.jpg?w=1480&t=st=1704774064~exp=1704774664~hmac=7e2a59f40e49bc687930287c3e4bea98cd700ee6f1ff3de19020cb2b8b4983f2"
+            className={collapsed ? 'collapsed-logo-class' : 'logo-class'}
+            src={process.env.PUBLIC_URL + '/school_image.png'}
             alt="Description of the image"
             style={{ width: '100%' }}
             preview={false}
@@ -201,7 +201,7 @@ const Dash = () => {
             background: colorBgContainer,
           }}
         >
-          
+
           {(selectedTab === 'dashboard-students') && <StudentAnalysis />}
           {(selectedTab === 'students') && <ParentMain />}
           {(selectedTab === 'Results') && <AdminResults />}
@@ -210,15 +210,15 @@ const Dash = () => {
           {(selectedTab === 'Attend') && <Attend />}
           {(selectedTab === 'Transport') && <TransportForm />}
           {(selectedTab === 'EarningForm') && <EarningForm />}
-          {(selectedTab === 'NonTeaching') && <NonTeaching/>}
-          {(selectedTab === 'Uploadbooks') && <Uploadbooks/>}
-          {(selectedTab === 'Photoupload') && <Photoupload/>}
-          {(selectedTab === 'Timetable') && <Timetable/>}
-          {(selectedTab === 'DailyRoutine') && <DailyRoutine/>}
-          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage/>}
-          {(selectedTab === 'FeedbackReceivedPage') && <FeedbackReceivedPage/>}
+          {(selectedTab === 'NonTeaching') && <NonTeaching />}
+          {(selectedTab === 'Uploadbooks') && <Uploadbooks />}
+          {(selectedTab === 'Photoupload') && <Photoupload />}
+          {(selectedTab === 'Timetable') && <Timetable />}
+          {(selectedTab === 'DailyRoutine') && <DailyRoutine />}
+          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage />}
+          {(selectedTab === 'FeedbackReceivedPage') && <FeedbackReceivedPage />}
 
-          
+
 
 
 

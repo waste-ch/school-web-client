@@ -20,6 +20,10 @@
     margin-left: 20px;
 }
 
+.collapsed-logo-class {
+    width: 40px !important;
+}
+
 .header-text {
     flex: 1;
     /* Occupy remaining space */

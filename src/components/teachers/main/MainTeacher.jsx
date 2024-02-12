@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import TeacherAllStd from "./TeachAllStd";
 import Timetable from "./timetable";
 import Results from "./mainresults";
-import Attend from "./Attend";
+import Attendance from "./Attendance";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -15,14 +15,14 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import Event from "./Events";
-import StudentDetails from "../../students/studentdetails";
+import StudentDetails from "../../students/student_details";
 import TeacherPayments from "../teacher_payments";
 import StudentMarks from "./stuallmarks";
 import Homework from "./Homework";
-import Uploadbooks from "../adminteacherlib";
-import Photoupload from "./teachergallary";
-import DailyRoutine from "./teacherschedule";
-import SchoolNewsPage from "../../admin/adminews";
+import Uploadbooks from "../admin_teacher_lib";
+import Photoupload from "./teachers_gallery";
+import DailyRoutine from "./teachers_schedule";
+import SchoolNewsPage from "../../admin/school_news";
 const { Header, Sider, Content } = Layout;
 
 
@@ -31,63 +31,63 @@ const { Header, Sider, Content } = Layout;
 const menuItems = [
   {
     key: 'TeachAllStd',
-    icon: <SolutionOutlined/>,
+    icon: <SolutionOutlined />,
     label: 'TeachAllStd',
   },
   {
-    key:'Results',
-    label:'Deatailed Analysis',
+    key: 'Results',
+    label: 'Deatailed Analysis',
   },
   {
-    key:'IndividualResults',
-    icon:'🤨',
-    label:'IndividualResults',
+    key: 'IndividualResults',
+    icon: '🤨',
+    label: 'IndividualResults',
   },
   {
-    key:'Event',
-    icon:"📢",
-    label:'Events',
+    key: 'Event',
+    icon: "📢",
+    label: 'Events',
   },
   {
-    key:'StudentDetails',
-    icon:<UserOutlined/>,
-    label:'StudentDetails',
+    key: 'StudentDetails',
+    icon: <UserOutlined />,
+    label: 'StudentDetails',
   },
   {
-    key:'DailyRoutine',
-    label:'DailyRoutine',
+    key: 'DailyRoutine',
+    label: 'DailyRoutine',
   },
   {
-    key:'Timetable',
-    icon:<FormOutlined/>,
-    label:'Timetable',
+    key: 'Timetable',
+    icon: <FormOutlined />,
+    label: 'Timetable',
   },
   {
-    key:'TeacherProfile',
-    icon:<UserOutlined/>,
-    label:'TeacherProfile',
+    key: 'TeacherProfile',
+    icon: <UserOutlined />,
+    label: 'TeacherProfile',
   },
   {
-    key:'Att',
-    icon:<UserOutlined/>,
-    label:'Attendence',
+    key: 'Att',
+    icon: <UserOutlined />,
+    label: 'Attendence',
   },
   {
-    key:'Homework',
-    icon:<FormOutlined/>,
-    label:'Home Work',
+    key: 'Homework',
+    icon: <FormOutlined />,
+    label: 'Home Work',
   },
   {
-    key:'Uploadbooks',
-    label:'Library',
+    key: 'Uploadbooks',
+    label: 'Library',
   },
   {
-    key:'Photoupload',
-    label:'Gallary',
+    key: 'Photoupload',
+    label: 'Gallary',
   },
   {
-    key:'SchoolNewsPage',
-    label:'SchoolNews',
+    key: 'SchoolNewsPage',
+    label: 'SchoolNews',
   },
 ]
 
@@ -114,9 +114,9 @@ const MainTeacher = () => {
         <div className="demo-logo-vertical" >
           {/*TODO: change with original logo*/}
           <Image
-            className='logo-class'
-            src="https://img.freepik.com/free-vector/education-pen-concept_98292-5144.jpg?w=1480&t=st=1704774064~exp=1704774664~hmac=7e2a59f40e49bc687930287c3e4bea98cd700ee6f1ff3de19020cb2b8b4983f2"
-            alt="Description of the image"
+            className={collapsed ? 'collapsed-logo-class' : 'logo-class'}
+            src={process.env.PUBLIC_URL + '/school_image.png'}
+            alt="school image"
             style={{ width: '100%' }}
             preview={false}
           />
@@ -162,23 +162,23 @@ const MainTeacher = () => {
           }}
         >
 
-          {(selectedTab === 'TeachAllStd') && <TeacherAllStd/>}
-          {(selectedTab === 'Event') && <Event/>}
-          {(selectedTab === 'StudentDetails') && <StudentDetails/>}
-          {(selectedTab === 'Timetable') && <Timetable/>}
-          {(selectedTab === 'Results') && <Results/>}
-          {(selectedTab === 'IndividualResults') && <StudentMarks/>}
-          {(selectedTab === 'TeacherProfile') && <TeacherPayments/>}
-          {(selectedTab === 'Att') && <Attend/>}
-          {(selectedTab === 'Homework') && <Homework/>}
-          {(selectedTab === 'Uploadbooks') && <Uploadbooks/>}
-          {(selectedTab === 'Photoupload') && <Photoupload/>}
-          {(selectedTab === 'DailyRoutine') && <DailyRoutine/>}
-          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage/>} 
+          {(selectedTab === 'TeachAllStd') && <TeacherAllStd />}
+          {(selectedTab === 'Event') && <Event />}
+          {(selectedTab === 'StudentDetails') && <StudentDetails />}
+          {(selectedTab === 'Timetable') && <Timetable />}
+          {(selectedTab === 'Results') && <Results />}
+          {(selectedTab === 'IndividualResults') && <StudentMarks />}
+          {(selectedTab === 'TeacherProfile') && <TeacherPayments />}
+          {(selectedTab === 'Att') && <Attendance />}
+          {(selectedTab === 'Homework') && <Homework />}
+          {(selectedTab === 'Uploadbooks') && <Uploadbooks />}
+          {(selectedTab === 'Photoupload') && <Photoupload />}
+          {(selectedTab === 'DailyRoutine') && <DailyRoutine />}
+          {(selectedTab === 'SchoolNewsPage') && <SchoolNewsPage />}
 
 
-          
-          
+
+
 
         </Content>
       </Layout>

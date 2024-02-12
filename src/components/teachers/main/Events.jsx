@@ -1,6 +1,6 @@
 // App.js
 import React, { useState } from 'react';
-import Calendar from './calevent';
+import CalendarEvents from './calendar_events';
 
 const Event = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -12,7 +12,7 @@ const Event = () => {
   return (
     <div>
       <h1>Teacher's Calendar</h1>
-      <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />
+      <CalendarEvents selectedDate={selectedDate} onDateChange={handleDateChange} />
     </div>
   );
 };

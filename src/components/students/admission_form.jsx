@@ -6,7 +6,7 @@ const { TextArea } = Input;
 
 const StudentAdmissionForm = () => {
     const onFinish = (values) => {
-        // You can handle the form submission logic here
+        //TODO: You can handle the form submission logic here
         console.log('Form submitted:', values);
         message.success('Student admission details saved successfully!');
     };
@@ -28,8 +28,8 @@ const StudentAdmissionForm = () => {
     };
 
     const formItemLayout = {
-        labelCol: { span: 6 },
-        wrapperCol: { span: 12 },
+        labelCol: { span: 4 }, // Decrease the span to align labels to the left
+        wrapperCol: { span: 16 }, // Adjust wrapper span if necessary
     };
 
     const [form] = Form.useForm();

@@ -1,6 +1,9 @@
+import React, { useState } from 'react';
+import { Table, Button, Drawer } from 'antd';
 
-import { useState } from 'react'
-import { Table } from 'antd';
+import FeedbackForm from './feedback_form'
+
+
 const columns = [
   {
     title: 'Name',
@@ -46,7 +49,7 @@ const data = [
     Name: 'Emily Brown',
     Email: 'emily.brown@example.com',
     Gender: 'Female',
-    Complaint: 'Garbage not college since one month',
+    Complaint: 'Garbage not collected since one month',
   },
   // Add more records as needed...
 ];
@@ -57,8 +60,8 @@ const App = () => {
       current: 1,
       pageSize: 10,
     },
+    drawerVisible: false,
   });
-
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -66,17 +69,45 @@ const App = () => {
       filters,
       ...sorter,
     });
-
-   
   };
+
+  const handleAddFeedback = () => {
+    setTableParams({
+      ...tableParams,
+      drawerVisible: true,
+    });
+  };
+
+  const handleCloseDrawer = () => {
+    setTableParams({
+      ...tableParams,
+      drawerVisible: false,
+    });
+  };
+
   return (
-    <Table
-      columns={columns}
-      rowKey={'email'}
-      dataSource={data}
-      pagination={tableParams.pagination}
-      onChange={handleTableChange}
-    />
+    <>
+      <Button type="primary" onClick={handleAddFeedback} style={{ marginBottom: 16 }}>
+        Add Feedback
+      </Button>
+      <Table
+        columns={columns}
+        rowKey={'email'}
+        dataSource={data}
+        pagination={tableParams.pagination}
+        onChange={handleTableChange}
+      />
+      <Drawer
+        title="Add Feedback"
+        width={800}
+        onClose={handleCloseDrawer}
+        visible={tableParams.drawerVisible}
+        bodyStyle={{ paddingBottom: 80 }}
+      >
+        <FeedbackForm />
+      </Drawer>
+    </>
   );
 };
+
 export default App;

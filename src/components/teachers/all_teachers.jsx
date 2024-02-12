@@ -1,5 +1,8 @@
-import React from 'react';
-import { Table, Avatar } from 'antd';
+import React, { useState } from 'react';
+import { Table, Avatar, Button, Drawer } from 'antd';
+
+import TeacherForm from './teacher_form'
+
 
 
 
@@ -123,8 +126,34 @@ const data = [
 
 
 const Teachers = () => {
+    const [visible, setVisible] = useState(false);
+
+    const showDrawer = () => {
+        setVisible(true);
+    };
+
+    const onClose = () => {
+        //fetchUsers()
+        setVisible(false);
+    };
     return (
-        <Table columns={columns} dataSource={data} />
+        <>
+            Teachers Details
+            <Button type="primary" onClick={showDrawer} style={{ float: 'right', marginBottom: 16 }}>
+                Add New Teacher
+            </Button>
+            <Table columns={columns} dataSource={data} />
+
+            <Drawer
+                width={800}
+                onClose={onClose}
+                open={visible}
+                bodyStyle={{ paddingBottom: 80 }}
+                title="Student Registration"
+            >
+                <TeacherForm onClose={onClose} isUserRegistration={true} />
+            </Drawer>
+        </>
     );
 };
 

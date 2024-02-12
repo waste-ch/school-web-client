@@ -33,3 +33,79 @@
 .card-details:hover {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+.admin-login {
+    height: 300px !important;
+    width: 400px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.admin-login:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+    /* New box shadow on hover */
+}
+
+.button-float {
+    float: right;
+}
+
+.dashboard-container {
+    width: 100vw;
+    height: 90vh;
+}
+
+.demo-logo-vertical {
+    text-align: center;
+    padding: 10px;
+}
+
+.logo-class {
+    width: 80px !important;
+}
+
+.collapsed-logo-class {
+    width: 40px !important;
+}
+
+.header-class {
+    padding: 0
+}
+
+.button-class {
+    font-size: 16px;
+    width: 64;
+    height: 64;
+    background: white
+}
+
+.content-class {
+    margin: 24px 16px;
+    padding: 24px;
+    min-height: 280;
+    max-height: 80vw;
+    overflow: scroll;
+}
+
+.welcome-text {
+    font-weight: bold;
+    margin-left: 40vw;
+}
+
+.logout-button {
+    position: absolute;
+    right: 9px;
+    top: 20px;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

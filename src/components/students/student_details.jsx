@@ -1,5 +1,7 @@
-import React from 'react';
-import { Table, Avatar } from 'antd';
+import React, { useState } from 'react';
+import { Table, Avatar, Button, Drawer } from 'antd';
+
+import StudentAdmissionForm from './admission_form'
 const columns = [
     {
         title: 'Roll No',
@@ -141,8 +143,34 @@ const data = [
 
 
 const StudentDetails = () => {
+    const [visible, setVisible] = useState(false);
+
+    const showDrawer = () => {
+        setVisible(true);
+    };
+
+    const onClose = () => {
+        //fetchUsers()
+        setVisible(false);
+    };
     return (
-        <Table columns={columns} dataSource={data} />
+        <>
+            Students Details
+            <Button type="primary" onClick={showDrawer} style={{ float: 'right', marginBottom: 16 }}>
+                Add New Student
+            </Button>
+            <Table columns={columns} dataSource={data} />
+
+            <Drawer
+                width={800}
+                onClose={onClose}
+                open={visible}
+                bodyStyle={{ paddingBottom: 80 }}
+                title="Student Registration"
+            >
+                <StudentAdmissionForm onClose={onClose} isUserRegistration={true} />
+            </Drawer>
+        </>
     );
 };
 
