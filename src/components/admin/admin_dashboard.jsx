@@ -48,9 +48,39 @@ import PhotoUpload from '../teachers/main/teachers_gallery';
 import Timetable from '../teachers/main/timetable';
 import DailyRoutine from '../teachers/main/teachers_schedule';
 
+
+import Admin from '../admin'
+import StudentDetails from '../students/students'
+import ParentDetails from '../parents/parents'
+import TeacherDetails from '../teachers/teachers'
+
 import './admin.css';
 
 const { Header, Sider, Content } = Layout;
+const { SubMenu } = Menu;
+
+const subMenuItems = [
+    {
+        key: 'dashboard-admin',
+        icon: <UserOutlined />,
+        label: 'Admin',
+    },
+    {
+        key: 'dashboard-students',
+        icon: <SolutionOutlined />,
+        label: 'Students',
+    },
+    {
+        key: 'dashboard-parents',
+        icon: <UsergroupAddOutlined />,
+        label: 'Parents',
+    },
+    {
+        key: 'dashboard-teachers',
+        icon: <TeamOutlined />,
+        label: 'Teachers',
+    },
+]
 
 const menuItems = [
     /*{
@@ -146,7 +176,7 @@ const menuItems = [
 ]
 const AdminDashboard = () => {
     const history = useNavigate();
-    const [selectedTab, setSelectedTab] = useState('students')
+    const [selectedTab, setSelectedTab] = useState('dashboard-admin')
 
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -177,11 +207,23 @@ const AdminDashboard = () => {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['students']}
-                    items={menuItems}
                     selectedKeys={[selectedTab]}
                     onClick={handleMenuClick}
-                />
+                    defaultSelectedKeys={['dashboard-admin']}
+                >
+                    <SubMenu key="dashboard" icon={<UserOutlined />} title="Dashboard">
+                        {subMenuItems.map((item) => (
+                            <Menu.Item key={item.key} icon={item.icon} onClick={handleMenuClick}>
+                                {item.label}
+                            </Menu.Item>
+                        ))}
+                    </SubMenu>
+                    {menuItems.map((item) => (
+                        <Menu.Item key={item.key} icon={item.icon}>
+                            {item.label}
+                        </Menu.Item>
+                    ))}
+                </Menu>
             </Sider>
             <Layout>
                 <Header
@@ -208,6 +250,10 @@ const AdminDashboard = () => {
                     }}
                 >
 
+                    {(selectedTab === 'dashboard-admin') && <Admin />}
+                    {(selectedTab === 'dashboard-students') && <StudentDetails />}
+                    {(selectedTab === 'dashboard-parents') && <ParentDetails />}
+                    {(selectedTab === 'dashboard-teachers') && <TeacherDetails />}
                     {(selectedTab === 'students') && <AllStudents />}
                     {(selectedTab === 'teachers') && <AllTeachers />}
                     {(selectedTab === 'timeTable') && <Timetable />}
