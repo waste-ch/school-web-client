@@ -10,7 +10,7 @@ const LoginButton = () => {
             <Menu.Item key="admin" onClick={() => handleLogin('/admin/login')}>
                 Admin login
             </Menu.Item>
-            <Menu.Item key="user" onClick={() => handleLogin('/StudentTabs')}>
+            <Menu.Item key="user" onClick={() => handleLogin('/student/login')}>
                 Student Login
             </Menu.Item>
             <Menu.Item key="driver" onClick={() => handleLogin('/TeacherLogin')}>

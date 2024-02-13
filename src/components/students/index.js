@@ -1,3 +1,3 @@
-import StudentTabs from "./studentmain";
+import StudentDashboard from "./student_dashboard";
 
-export default StudentTabs
+export default StudentDashboard

@@ -2,90 +2,83 @@ import React, { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
-  SolutionOutlined,
-  UsergroupAddOutlined,
+  HomeOutlined, DollarOutlined, BarChartOutlined, BookOutlined, ScheduleOutlined, PictureOutlined, UserOutlined, ReadOutlined, MessageOutlined
   //TeamOutlined, FormOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
 //import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
-import Event from '../teachers/main/Events';
-import StudentAnalysis from '../students/students';
-import Timetable from './studentexamtimetable';
+//import Event from '../teachers/main/Events';
+//import StudentAnalysis from './students';
+//import Timetable from './studentexamtimetable';
 import FeePage from '../parents/fee';
 import Results from '../parents/results';
-import StudentHomework from './Std_Homework';
-import Attendence from '../parents/attendence';
+import Attendance from '../parents/attendence';
 import Library from './library';
-import Gallery from '../parents/gallary';
+import Gallery from '../parents/gallery';
 import DailyRoutine from './daily_schedule';
 import StudentProfile from './stdprofile';
 import FeedbackPage from './feedbackform';
 import SchoolNews from './schoolnews';
+import HomeWork from '../teachers/main/Homework'
 const { Header, Sider, Content } = Layout;
 
-const { SubMenu } = Menu;
 
-const subMenuItems = [
+const menuItems = [
   {
-    key: 'StudentAnalysis',
-    icon: <SolutionOutlined />,
-    label: 'StudentAnalysis',
+    key: 'homeWork',
+    label: 'Home Work',
+    icon: <HomeOutlined />,
   },
   {
-    key: 'Event',
-    icon: <UsergroupAddOutlined />,
-    label: 'Event',
+    key: 'fees',
+    label: 'Fees',
+    icon: <DollarOutlined />,
   },
   {
-    key: 'Timetable',
-    label: 'Timetable',
-  },
-  {
-    key: 'Fee',
-    label: 'Fee',
-  },
-  {
-    key: 'Results',
+    key: 'results',
     label: 'Results',
+    icon: <BarChartOutlined />,
   },
   {
-    key: 'StudentHomework',
-    label: 'StudentHomework',
+    key: 'attendance',
+    label: 'Attendance',
+    icon: <UserOutlined />,
   },
   {
-    key: 'Attendence',
-    label: 'Attendence',
-  },
-  {
-    key: 'Library',
+    key: 'library',
     label: 'Library',
+    icon: <BookOutlined />,
   },
   {
-    key: 'DailyRotuine',
-    label: 'DailyRotuine',
+    key: 'dailyRoutine',
+    label: 'Daily Routine',
+    icon: <ScheduleOutlined />,
   },
   {
-    key: 'Gallery',
+    key: 'gallery',
     label: 'Gallery',
+    icon: <PictureOutlined />,
   },
   {
-    key: 'StudentProfile',
+    key: 'studentProfile',
     label: 'My Profile',
+    icon: <UserOutlined />,
   },
   {
-    key: 'SchoolNews',
-    label: 'SchoolNews',
+    key: 'schoolNews',
+    label: 'School News',
+    icon: <ReadOutlined />,
   },
   {
-    key: 'FeedbackPage',
-    label: 'Feedback form',
+    key: 'feedback',
+    label: 'Feedback',
+    icon: <MessageOutlined />,
   },
-]
+];
 const StudentApp = () => {
   const history = useNavigate();
-  const [selectedTab, setSelectedTab] = useState('dashboard-admin')
+  const [selectedTab, setSelectedTab] = useState('homeWork')
 
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -118,15 +111,13 @@ const StudentApp = () => {
           mode="inline"
           selectedKeys={[selectedTab]}
           onClick={handleMenuClick}
-          defaultSelectedKeys={['dashboard-admin']}
+          defaultSelectedKeys={['homeWork']}
         >
-          <SubMenu key="dashboard" icon={<UserOutlined />} title="Dashboard">
-            {subMenuItems.map((item) => (
-              <Menu.Item key={item.key} icon={item.icon} onClick={handleMenuClick}>
-                {item.label}
-              </Menu.Item>
-            ))}
-          </SubMenu>
+          {menuItems.map((item) => (
+            <Menu.Item key={item.key} icon={item.icon} onClick={handleMenuClick}>
+              {item.label}
+            </Menu.Item>
+          ))}
         </Menu>
       </Sider>
       <Layout>
@@ -153,19 +144,22 @@ const StudentApp = () => {
             background: colorBgContainer,
           }}
         >
-          {(selectedTab === 'StudentAnalysis') && <StudentAnalysis />}
+          {(selectedTab === 'homeWork') && <HomeWork />}
+          {(selectedTab === 'fees') && <FeePage />}
+          {(selectedTab === 'results') && <Results />}
+          {(selectedTab === 'attendance') && <Attendance />}
+          {(selectedTab === 'library') && <Library />}
+          {(selectedTab === 'dailyRoutine') && <DailyRoutine />}
+          {(selectedTab === 'gallery') && <Gallery />}
+          {(selectedTab === 'studentProfile') && <StudentProfile />}
+          {(selectedTab === 'schoolNews') && <SchoolNews />}
+          {(selectedTab === 'feedback') && <FeedbackPage />}
+
+
+
+          {/*{(selectedTab === 'StudentAnalysis') && <StudentAnalysis />}
           {(selectedTab === 'Event') && <Event />}
-          {(selectedTab === 'Timetable') && <Timetable />}
-          {(selectedTab === 'Fee') && <FeePage />}
-          {(selectedTab === 'Results') && <Results />}
-          {(selectedTab === 'StudentHomework') && <StudentHomework />}
-          {(selectedTab === 'Attendence') && <Attendence />}
-          {(selectedTab === 'Library') && <Library />}
-          {(selectedTab === 'Gallery') && <Gallery />}
-          {(selectedTab === 'DailyRotuine') && <DailyRoutine />}
-          {(selectedTab === 'StudentProfile') && <StudentProfile />}
-          {(selectedTab === 'FeedbackPage') && <FeedbackPage />}
-          {(selectedTab === 'SchoolNews') && <SchoolNews />}
+          {(selectedTab === 'Timetable') && <Timetable />}*/}
 
 
 

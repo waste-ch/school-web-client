@@ -8,7 +8,6 @@ import { getTokenFC } from './firebase';
 import { notification } from 'antd';
 import ParentLogin from './components/parents/ParentLogin';
 import TeacherLogin from './components/teachers/teacher_login';
-import StudentLogin from './components/students/stu_login';
 import Std from './components/parents/student_attendance';
 //import MainTeach from './components/teachers/MainTeacher';
 import MainTeacher from './components/teachers/main/MainTeacher';
@@ -16,7 +15,6 @@ import Event from './components/teachers/main/Events';
 import Timetable from './components/teachers/main/timetable';
 import Fa1 from './components/teachers/main/allexamresults.jsx/fa1results';
 //import AdminDashBoard from './components/dashboard/AdminDashboard';
-import StudentTabs from './components/students';
 //import Admin from './components/admin/admin';
 import Dash from './components/dashboard/admin1';
 import TransportForm from './components/dashboard/transport';
@@ -27,6 +25,9 @@ import Library from './components/admin/library';
 /** components related admin */
 import AdminLogin from './components/admin/admin_login'
 import AdminDashboard from './components/admin/admin_dashboard'
+//components related to students
+import StudentLogin from './components/students/student_login';
+import StudentDashboard from './components/students/';
 
 import './App.css';
 
@@ -89,6 +90,10 @@ const App = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
+        {/*routes related to students*/}
+        <Route path='/student/login' element={<StudentLogin />} />
+        <Route path='/student/dashboard' element={<StudentDashboard />} />
+
 
         {/*no match component*/}
         <Route path="*" element={<NoMatch />} />
@@ -100,7 +105,6 @@ const App = () => {
         <Route path='/Std' element={<Std />} />
         <Route path='/Timetable' element={<Timetable />} />
         <Route path='/Fa1' element={<Fa1 />} />
-        <Route path='/StudentTabs' element={<StudentTabs />} />
         <Route path='/Dash' element={<Dash />} />
         <Route path='/Transport' element={<TransportForm />}></Route>
         <Route path='/EarningForm' element={<EarningForm />} />

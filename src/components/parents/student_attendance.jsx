@@ -19,7 +19,7 @@ import Attendence from './attendence';
 import Results from './results';
 import Separateresults from './separateresults';
 import StudentHomework from '../students/Std_Homework';
-import Gallery from './gallary';
+import Gallery from './gallery';
 import Timetable from '../students/studentexamtimetable';
 import SchoolNews from '../students/schoolnews';
 const { Header, Sider, Content } = Layout;

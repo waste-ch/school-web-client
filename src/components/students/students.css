@@ -10,7 +10,26 @@
     max-width: 300px;
     margin: 10px;
 }
+
 .pie-chart:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+    /* New box shadow on hover */
+}
+
+
+.student-login {
+    height: 300px !important;
+    width: 400px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.student-login:hover {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     /* New box shadow on hover */
 }
