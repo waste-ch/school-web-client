@@ -13,7 +13,7 @@ const LoginButton = () => {
             <Menu.Item key="user" onClick={() => handleLogin('/student/login')}>
                 Student Login
             </Menu.Item>
-            <Menu.Item key="driver" onClick={() => handleLogin('/TeacherLogin')}>
+            <Menu.Item key="driver" onClick={() => handleLogin('/teachers/login')}>
                 Teacher Login
             </Menu.Item>
             <Menu.Item key="parent" onClick={() => handleLogin('/ParentLogin')}>

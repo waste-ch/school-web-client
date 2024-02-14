@@ -53,7 +53,7 @@ const LoginForm = () => {
         <>
             <Header />
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80vh" }}>
-                <div className="admin-login" style={{ maxWidth: '400px', margin: '0 auto', background: "white", color: "black" }}>
+                <div className="admin-login" style={{ width: '500px', margin: '0 auto', background: "white", color: "black" }}>
                     <Title level={2}>Admin Login</Title>
                     <Form name="login" onFinish={onLogin}>
                         <Form.Item

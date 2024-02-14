@@ -7,7 +7,6 @@ import { useData } from './data_context';
 import { getTokenFC } from './firebase';
 import { notification } from 'antd';
 import ParentLogin from './components/parents/ParentLogin';
-import TeacherLogin from './components/teachers/teacher_login';
 import Std from './components/parents/student_attendance';
 //import MainTeach from './components/teachers/MainTeacher';
 import MainTeacher from './components/teachers/main/MainTeacher';
@@ -28,6 +27,10 @@ import AdminDashboard from './components/admin/admin_dashboard'
 //components related to students
 import StudentLogin from './components/students/student_login';
 import StudentDashboard from './components/students/';
+
+//components related to students
+import TeacherLogin from './components/teachers/teacher_login';
+import TeachersDashboard from './components/teachers';
 
 import './App.css';
 
@@ -85,21 +88,24 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Main />} />
 
-        {/*admin registration and login routes*/}
+        {/*admin registration and login routes */}
         {/*<Route path="/admin/register" element={<AdminSingUpForm />} />*/}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-        {/*routes related to students*/}
+        {/*routes related to students */}
         <Route path='/student/login' element={<StudentLogin />} />
         <Route path='/student/dashboard' element={<StudentDashboard />} />
+
+        {/*routes related to teachers */}
+        <Route path='/teachers/login' element={<TeacherLogin />} />
+        <Route path='/teachers/dashboard' element={<TeachersDashboard />} />
+
 
 
         {/*no match component*/}
         <Route path="*" element={<NoMatch />} />
         <Route path='/ParentLogin' element={<ParentLogin />} />
-        <Route path='/TeacherLogin' element={<TeacherLogin />} />
-        <Route path='/StudentLogin' element={<StudentLogin />} />
         <Route path='/MainTeacher' element={<MainTeacher />} />
         <Route path='/Event' element={<Event />} />
         <Route path='/Std' element={<Std />} />

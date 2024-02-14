@@ -1,3 +1,3 @@
-import TeacherTabs from "./teacher_tabs";
+import TeachersDashboard from "./teachers_dashboard";
 
-export default TeacherTabs
+export default TeachersDashboard
