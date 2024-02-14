@@ -6,7 +6,6 @@ import NoMatch from './components/no-match';
 import { useData } from './data_context';
 import { getTokenFC } from './firebase';
 import { notification } from 'antd';
-import ParentLogin from './components/parents/ParentLogin';
 import Std from './components/parents/student_attendance';
 //import MainTeach from './components/teachers/MainTeacher';
 import MainTeacher from './components/teachers/main/MainTeacher';
@@ -31,6 +30,11 @@ import StudentDashboard from './components/students/';
 //components related to students
 import TeacherLogin from './components/teachers/teacher_login';
 import TeachersDashboard from './components/teachers';
+
+//components related to students
+import ParentLogin from './components/parents/parent_login';
+import ParentDashboard from './components/parents';
+
 
 import './App.css';
 
@@ -100,6 +104,11 @@ const App = () => {
         {/*routes related to teachers */}
         <Route path='/teachers/login' element={<TeacherLogin />} />
         <Route path='/teachers/dashboard' element={<TeachersDashboard />} />
+
+
+        {/*routes related to parent */}
+        <Route path='/parents/login' element={<ParentLogin />} />
+        <Route path='/parents/dashboard' element={<ParentDashboard />} />
 
 
 

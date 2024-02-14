@@ -1,3 +1,3 @@
-import ParentTabs from "./parent_tabs";
+import ParentDashboard from "./parent_dashboard";
 
-export default ParentTabs
+export default ParentDashboard
