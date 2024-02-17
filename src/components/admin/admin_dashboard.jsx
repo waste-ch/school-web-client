@@ -23,7 +23,7 @@ import {
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-import ExpensesChart from './expenses_chart';
+import ExpensesChart from './expenses';
 import EarningForm from './earning';
 import NonTeaching from './non_teaching';
 import AdminFeedback from './admin_feedback';

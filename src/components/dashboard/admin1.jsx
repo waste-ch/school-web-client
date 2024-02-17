@@ -10,7 +10,7 @@ import {
 import { Layout, Menu, Button, theme, Image } from 'antd';
 import './dashboard.component.css';
 import { useNavigate } from 'react-router-dom';
-import Expenceschart from '../admin/expenses_chart';
+import Expenceschart from '../admin/expenses';
 //import Admin from '../admin/admin';
 import StudentAnalysis from '../students/students';
 import ParentMain from '../parents/parents';
