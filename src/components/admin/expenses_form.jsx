@@ -11,7 +11,11 @@ const ExpenseForm = ({ form, onFinish }) => {
             wrapperCol={{ span: 16 }}
         >
             {/* BILL NO */}
-            <Form.Item label="BILL NO" name="billNo" rules={[{ required: true, message: 'Please enter bill no!' }]}>
+            {/*<Form.Item label="BILL NO" name="billNo" rules={[{ required: true, message: 'Please enter bill no!' }]}>
+                <Input />
+            </Form.Item>*/}
+
+            <Form.Item label="Student Name" name="studentName" rules={[{ required: true, message: 'Please enter student name!' }]}>
                 <Input />
             </Form.Item>
 

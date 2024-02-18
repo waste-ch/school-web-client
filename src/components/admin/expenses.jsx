@@ -1,24 +1,74 @@
-import React, { useState } from 'react';
-import { Form, Button, Table, Space, Drawer } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Table, Space, Drawer, message } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import ExpenseForm from './expenses_form'; // Assuming ExpenseForm component is created
+import api from '../../axios-config';
+
 
 const ExpenseChart = () => {
   const [form] = Form.useForm();
-  const [earnings, setEarnings] = useState([]);
   const [showDrawer, setShowDrawer] = useState(false);
+  const [expensesData, setExpensesData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    setEarnings([...earnings, { key: Date.now(), ...values }]);
-    form.resetFields();
+
+  useEffect(() => {
+    fetchExpenses()
+  }, [])
+
+  const fetchExpenses = () => {
+    setLoading(true)
+
+    return api.get('/expenses/fetch')
+      .then((response) => {
+        setLoading(false)
+        if (response && response.data) {
+          const data = response.data
+          setExpensesData(data || [])
+        }
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.error(err)
+      })
+  }
+
+  const onFinish = async (values) => {
+    setLoading(true)
+    api.post('/expenses/add', values)
+      .then((response) => {
+        setLoading(false)
+        message.success('Expenses added successfully.');
+        form.resetFields();
+        setShowDrawer(false);
+        fetchExpenses()
+      })
+      .catch((error) => {
+        setLoading(false)
+        const errMessage = error && error.response && error.response.data && error.response.data.message
+        message.error(errMessage || 'Technical error, please try again later.!!');
+      });
   };
 
   const handleDelete = (record) => {
-    const updatedEarnings = earnings.filter((earning) => earning.key !== record.key);
-    setEarnings(updatedEarnings);
+    api.post('/expenses/delete', record)
+      .then((response) => {
+        setLoading(false)
+        message.success('Expenses deleted successfully.');
+        //form.resetFields();
+        setShowDrawer(false);
+        fetchExpenses()
+      })
+      .catch((error) => {
+        setLoading(false)
+        const errMessage = error && error.response && error.response.data && error.response.data.message
+        message.error(errMessage || 'Technical error, please try again later.!!');
+      });
+
   };
 
   const columns = [
-    { title: 'BILL NO', dataIndex: 'billNo', key: 'billNo', editable: true },
+    { title: 'BILL NO', dataIndex: 'expensesId', key: 'expensesId', editable: true },
     { title: 'Expensive Type', dataIndex: 'expenseType', key: 'expenseType', editable: true },
     { title: 'Date of Expense', dataIndex: 'expenseDate', key: 'expenseDate', editable: true },
     { title: 'Amount', dataIndex: 'amount', key: 'amount' },
@@ -27,15 +77,15 @@ const ExpenseChart = () => {
       dataIndex: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <button type="button" onClick={() => handleDelete(record)}>
-            Delete
-          </button>
+          <Button type="link" danger onClick={() => handleDelete(record)}>
+            <DeleteOutlined />
+          </Button>
         </Space>
       ),
     },
   ];
 
-  const totalSum = earnings.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
+  const totalSum = expensesData.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
 
   return (
     <div>
@@ -52,7 +102,8 @@ const ExpenseChart = () => {
       </Drawer>
 
       <Table
-        dataSource={earnings}
+        loading={loading}
+        dataSource={expensesData}
         columns={columns}
         pagination={false}
         style={{ marginTop: '20px' }}
