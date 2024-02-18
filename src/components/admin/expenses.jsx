@@ -18,7 +18,6 @@ const ExpenseChart = () => {
 
   const fetchExpenses = () => {
     setLoading(true)
-
     return api.get('/expenses/fetch')
       .then((response) => {
         setLoading(false)

@@ -5,13 +5,13 @@ import api from '../../axios-config';
 
 
 
-const dataBar = [
-    { year: '2019', expenses: 12000 },
-    { year: '2020', expenses: 15000 },
-    { year: '2021', expenses: 18000 },
-    { year: '2022', expenses: 20000 },
-    // Add more data as needed
-];
+//const dataBar = [
+//    { year: '2019', expenses: 12000 },
+//    { year: '2020', expenses: 15000 },
+//    { year: '2021', expenses: 18000 },
+//    { year: '2022', expenses: 20000 },
+//    // Add more data as needed
+//];
 
 const data = [
     {
@@ -50,17 +50,33 @@ const pieConfig = {
 
 const AdminCharts = () => {
     const [earnings, setEarnings] = useState([]);
+    const [expensesData, setExpensesData] = useState([]);
+
 
     useEffect(() => {
-        fetchEarnings()
+        fetchEarnings();
+        fetchExpenses()
     }, [])
 
     const fetchEarnings = () => {
         return api.get('/earnings/fetch')
             .then((response) => {
                 if (response && response.data) {
-                    const data = response.data.map(val => ({ year: new Date(val.earningDate).getFullYear(), totalCollections: val.amountEarned }))
+                    const data = response.data.map(val => ({ year: val.earningDate, totalCollections: val.amountEarned }))
                     setEarnings(data || [])
+                }
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
+    const fetchExpenses = () => {
+        return api.get('/expenses/fetch')
+            .then((response) => {
+                if (response && response.data) {
+                    const data = response.data.map(val => ({ year: val.expenseDate, expenses: val.amount }))
+                    setExpensesData(data || [])
                 }
             })
             .catch((err) => {
@@ -81,7 +97,7 @@ const AdminCharts = () => {
             </Col>
             <Col span={8} key={'Expenses'}>
                 <Card title="Expenses">
-                    <Column data={dataBar} xField="year" yField="expenses" />
+                    <Column data={expensesData} xField="year" yField="expenses" />
                 </Card>
             </Col>
             <Col span={8} key={'Students'}>
