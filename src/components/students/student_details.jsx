@@ -1,65 +1,10 @@
 import React, { useState } from 'react';
-import { Table, Avatar, Button, Drawer } from 'antd';
+import { Table, Avatar, Button, Drawer, Form, Input, Space, Modal } from 'antd';
 
 import StudentAdmissionForm from './admission_form'
-const columns = [
-    {
-        title: 'Roll No',
-        dataIndex: 'rollNo',
-        key: 'rollNo',
-    },
-    {
-        title: 'Photo',
-        dataIndex: 'photo',
-        key: 'photo',
-        render: (photo) => <Avatar src={photo} />,
-    },
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Gender',
-        dataIndex: 'gender',
-        key: 'gender',
-    },
-    {
-        title: 'Class',
-        dataIndex: 'class',
-        key: 'class',
-    },
-    {
-        title: 'Section',
-        dataIndex: 'section',
-        key: 'section',
-    },
-    {
-        title: 'Parents',
-        dataIndex: 'parents',
-        key: 'parents',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
-    },
-    {
-        title: 'Date of Birth',
-        dataIndex: 'dob',
-        key: 'dob',
-    },
-    {
-        title: 'Phone',
-        dataIndex: 'phone',
-        key: 'phone',
-    },
-    {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-    },
-];
+import StudentAnalysis from './student_analysis'
+
+
 
 const data = [
     {
@@ -140,10 +85,136 @@ const data = [
     },
 ];
 
+const feeHistoryColumns = [
+    {
+        title: 'Date',
+        dataIndex: 'date',
+        key: 'date',
+    },
+    {
+        title: 'Amount Paid',
+        dataIndex: 'amountPaid',
+        key: 'amountPaid',
+        render: (amountPaid) => (
+            <span>
+                Rs {amountPaid} {/* Or your preferred currency */}
+            </span>
+        ),
+    },
+    {
+        title: 'Due',
+        dataIndex: 'due',
+        key: 'due',
+        render: (due) => (
+            <span>
+                Rs {due}
+            </span>
+        ),
+    },
+];
+
 
 
 const StudentDetails = () => {
+    const [form] = Form.useForm()
     const [visible, setVisible] = useState(false);
+    const [isFeedDetailsVisible, setFeedDetailsVisible] = useState(false);
+    const [isFeesHistoryVisible, setFeesHistoryVisible] = useState(false);
+    const [isResultsVisible, setResultsVisible] = useState(false);
+    const [feeDetails, setFeesDetails] = useState([])
+    // eslint-disable-next-line no-unused-vars
+    const [feesHistory, setFeesHistory] = useState([
+        {
+            key: '1',
+            date: '2023-01-15',
+            amountPaid: 100,
+            due: 0,
+        },
+        {
+            key: '2',
+            date: '2023-02-15',
+            amountPaid: 150,
+            due: 50,
+        },
+        {
+            key: '3',
+            date: '2023-03-15',
+            amountPaid: 200,
+            due: 0,
+        },
+        // Add more fee history records as needed
+    ])
+
+
+    const columns = [
+        {
+            title: 'Roll No',
+            dataIndex: 'rollNo',
+            key: 'rollNo',
+        },
+        {
+            title: 'Photo',
+            dataIndex: 'photo',
+            key: 'photo',
+            render: (photo) => <Avatar src={photo} />,
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Gender',
+            dataIndex: 'gender',
+            key: 'gender',
+        },
+        {
+            title: 'Class',
+            dataIndex: 'class',
+            key: 'class',
+        },
+        {
+            title: 'Section',
+            dataIndex: 'section',
+            key: 'section',
+        },
+        {
+            title: 'Parents',
+            dataIndex: 'parents',
+            key: 'parents',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+        {
+            title: 'Date of Birth',
+            dataIndex: 'dob',
+            key: 'dob',
+        },
+        {
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            render: (_, record) => (
+                <Space size="middle">
+                    <Button type='primary' onClick={() => setFeedDetailsVisible(true)}>Add Fees</Button>
+                    <Button type='primary' onClick={() => setFeesHistoryVisible(true)}>View Fee History</Button>
+                    <Button type='primary' onClick={() => setResultsVisible(true)}>Results</Button>
+                </Space>
+            ),
+        },
+    ];
 
     const showDrawer = () => {
         setVisible(true);
@@ -152,6 +223,12 @@ const StudentDetails = () => {
     const onClose = () => {
         //fetchUsers()
         setVisible(false);
+    };
+
+    const onFinish = (values) => {
+        //onSave(values);
+        setFeesDetails({ ...feeDetails, values })
+        form.resetFields();
     };
     return (
         <>
@@ -170,6 +247,46 @@ const StudentDetails = () => {
             >
                 <StudentAdmissionForm onClose={onClose} isUserRegistration={true} />
             </Drawer>
+
+            <Drawer
+                title="Add Fees"
+                placement="right"
+                onClose={() => setFeedDetailsVisible(false)}
+                visible={isFeedDetailsVisible}
+            >
+                <Form form={form} onFinish={onFinish} layout="vertical">
+                    <Form.Item label="Fee Amount" name="amount">
+                        <Input type="number" />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button onClick={() => setFeedDetailsVisible(false)} type="primary" htmlType="submit">
+                            Save
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Drawer>
+
+            <Modal
+                title="Fee History"
+                visible={isFeesHistoryVisible}
+                onCancel={() => setFeesHistoryVisible(false)}
+                footer={null}
+            >
+                <Table
+                    dataSource={feesHistory}
+                    columns={feeHistoryColumns}
+                    pagination={false}
+                />
+            </Modal>
+            <Modal
+                title="Results"
+                visible={isResultsVisible}
+                onCancel={() => setResultsVisible(false)}
+                footer={null}
+                width={1000}
+            >
+                <StudentAnalysis />
+            </Modal>
         </>
     );
 };

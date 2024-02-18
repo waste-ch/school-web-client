@@ -32,7 +32,7 @@ const columns = [
     key: 'action',
     render: () => (
       <Space size="middle">
-       <a href="/details">View Details</a>
+        <a href="/details">View Details</a>
 
       </Space>
     ),
@@ -57,7 +57,7 @@ const data = [
   // Add more data as needed
 ];
 
-const feepage = () => {
+const StudentFeesComponent = () => {
   return (
     <Card title="Fee Payment Status" style={{ width: '100%' }}>
       <Table columns={columns} dataSource={data} />
@@ -65,4 +65,4 @@ const feepage = () => {
   );
 };
 
-export default feepage;
+export default StudentFeesComponent;
