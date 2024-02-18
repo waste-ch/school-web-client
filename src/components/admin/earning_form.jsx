@@ -6,9 +6,9 @@ const EarningForm = ({ onFinish }) => {
 
     return (
         <Form form={form} name="earningForm" onFinish={onFinish} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-            <Form.Item label="ID" name="id" initialValue={0}>
+            {/*<Form.Item label="ID" name="id" initialValue={0}>
                 <Input />
-            </Form.Item>
+            </Form.Item>*/}
             <Form.Item label="Student Name" name="studentName" rules={[{ required: true, message: 'Please enter student name!' }]}>
                 <Input />
             </Form.Item>
