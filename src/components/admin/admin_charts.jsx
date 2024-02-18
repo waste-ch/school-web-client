@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'antd';
 import { Column, Pie, Area } from '@ant-design/plots';
+import api from '../../axios-config';
+
 
 
 const dataBar = [
@@ -43,26 +45,37 @@ const pieConfig = {
     },
 };
 
-const dataMountain = [
-    { year: '2021', totalCollections: 30000, feesCollections: 15000 },
-    { year: '2022', totalCollections: 45000, feesCollections: 20000 },
-    // Add more data as needed
-];
-const config = {
-    data: dataMountain,
-    xField: 'year',
-    yField: "totalCollections",
-};
+
 
 
 const AdminCharts = () => {
+    const [earnings, setEarnings] = useState([]);
+
+    useEffect(() => {
+        fetchEarnings()
+    }, [])
+
+    const fetchEarnings = () => {
+        return api.get('/earnings/fetch')
+            .then((response) => {
+                if (response && response.data) {
+                    const data = response.data.map(val => ({ year: new Date(val.earningDate).getFullYear(), totalCollections: val.amountEarned }))
+                    setEarnings(data || [])
+                }
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
     return (
         <Row gutter={16}>
             <Col span={8} key={'earnings'}>
                 <Card title="Earnings">
                     <Area
-                        {
-                        ...config}
+                        data={earnings}
+                        xField='year'
+                        yField='totalCollections'
                     />
                 </Card>
             </Col>

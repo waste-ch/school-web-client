@@ -1,8 +1,7 @@
 import React from 'react';
 import { Form, Button, DatePicker, Input } from 'antd';
 
-const EarningForm = ({ onFinish }) => {
-    const [form] = Form.useForm();
+const EarningForm = ({ onFinish, form }) => {
 
     return (
         <Form form={form} name="earningForm" onFinish={onFinish} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>

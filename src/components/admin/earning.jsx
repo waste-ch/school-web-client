@@ -63,7 +63,7 @@ const EarningFormWrapper = () => {
       .then((response) => {
         setLoading(false)
         message.success('Earnings deleted successfully.');
-        //form.resetFields();
+        form.resetFields();
         setDrawerVisible(false);
         fetchEarnings()
       })

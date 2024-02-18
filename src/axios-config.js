@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://school-web-server.vercel.app/' : 'http://localhost:5000', // Your API base URL
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://school-web-server.vercel.app/' : 'https://school-web-server.vercel.app/' //'http://localhost:5000', // Your API base URL
   timeout: 600000, // Set the timeout for requests if needed
 });
 
