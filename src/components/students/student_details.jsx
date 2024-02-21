@@ -1,89 +1,92 @@
-import React, { useState } from 'react';
-import { Table, Avatar, Button, Drawer, Form, Input, Space, Modal } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Table, Avatar, Button, Drawer, Form, Input, Space, Modal, message } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons'
 
 import StudentAdmissionForm from './admission_form'
 import StudentAnalysis from './student_analysis'
+import api from '../../axios-config';
 
 
 
-const data = [
-    {
-        rollNo: '101',
-        photo: 'https://example.com/photo1.jpg',
-        name: 'John Doe',
-        gender: 'Male',
-        class: '10A',
-        section: 'A',
-        parents: 'Mr. and Mrs. Doe',
-        address: '123 Main Street, City',
-        dob: '2005-05-10',
-        phone: '+1234567890',
-        email: 'john.doe@example.com',
-    },
-    {
-        rollNo: '102',
-        photo: 'https://example.com/photo2.jpg',
-        name: 'Jane Smith',
-        gender: 'Female',
-        class: '11B',
-        section: 'B',
-        parents: 'Mr. and Mrs. Smith',
-        address: '456 Oak Avenue, Town',
-        dob: '2004-08-15',
-        phone: '+9876543210',
-        email: 'jane.smith@example.com',
-    },
-    {
-        rollNo: '103',
-        photo: 'https://example.com/photo2.jpg',
-        name: 'Jane Smith',
-        gender: 'Female',
-        class: '11B',
-        section: 'B',
-        parents: 'Mr. and Mrs. Smith',
-        address: '456 Oak Avenue, Town',
-        dob: '2004-08-15',
-        phone: '+9876543210',
-        email: 'jane.smith@example.com',
-    }, {
-        rollNo: '104',
-        photo: 'https://example.com/photo2.jpg',
-        name: 'Jane Smith',
-        gender: 'Female',
-        class: '11B',
-        section: 'B',
-        parents: 'Mr. and Mrs. Smith',
-        address: '456 Oak Avenue, Town',
-        dob: '2004-08-15',
-        phone: '+9876543210',
-        email: 'jane.smith@example.com',
-    }, {
-        rollNo: '105',
-        photo: 'https://example.com/photo2.jpg',
-        name: 'Jane Smith',
-        gender: 'Female',
-        class: '11B',
-        section: 'B',
-        parents: 'Mr. and Mrs. Smith',
-        address: '456 Oak Avenue, Town',
-        dob: '2004-08-15',
-        phone: '+9876543210',
-        email: 'jane.smith@example.com',
-    },
-    {
-        rollNo: '106',
-        photo: 'https://example.com/photo1.jpg',
-        name: 'John mary',
-        gender: 'Female',
-        class: '10A',
-        section: 'A',
-        parents: 'Mr. and Mrs. Doe',
-        address: '123 Main Street, City',
-        dob: '2005-05-10',
-        phone: '+1234567890',
-        email: 'john.doe@example.com',
-    },
-];
+
+//const data = [
+//    {
+//        rollNo: '101',
+//        photo: 'https://example.com/photo1.jpg',
+//        name: 'John Doe',
+//        gender: 'Male',
+//        class: '10A',
+//        section: 'A',
+//        parents: 'Mr. and Mrs. Doe',
+//        address: '123 Main Street, City',
+//        dob: '2005-05-10',
+//        phone: '+1234567890',
+//        email: 'john.doe@example.com',
+//    },
+//    {
+//        rollNo: '102',
+//        photo: 'https://example.com/photo2.jpg',
+//        name: 'Jane Smith',
+//        gender: 'Female',
+//        class: '11B',
+//        section: 'B',
+//        parents: 'Mr. and Mrs. Smith',
+//        address: '456 Oak Avenue, Town',
+//        dob: '2004-08-15',
+//        phone: '+9876543210',
+//        email: 'jane.smith@example.com',
+//    },
+//    {
+//        rollNo: '103',
+//        photo: 'https://example.com/photo2.jpg',
+//        name: 'Jane Smith',
+//        gender: 'Female',
+//        class: '11B',
+//        section: 'B',
+//        parents: 'Mr. and Mrs. Smith',
+//        address: '456 Oak Avenue, Town',
+//        dob: '2004-08-15',
+//        phone: '+9876543210',
+//        email: 'jane.smith@example.com',
+//    }, {
+//        rollNo: '104',
+//        photo: 'https://example.com/photo2.jpg',
+//        name: 'Jane Smith',
+//        gender: 'Female',
+//        class: '11B',
+//        section: 'B',
+//        parents: 'Mr. and Mrs. Smith',
+//        address: '456 Oak Avenue, Town',
+//        dob: '2004-08-15',
+//        phone: '+9876543210',
+//        email: 'jane.smith@example.com',
+//    }, {
+//        rollNo: '105',
+//        photo: 'https://example.com/photo2.jpg',
+//        name: 'Jane Smith',
+//        gender: 'Female',
+//        class: '11B',
+//        section: 'B',
+//        parents: 'Mr. and Mrs. Smith',
+//        address: '456 Oak Avenue, Town',
+//        dob: '2004-08-15',
+//        phone: '+9876543210',
+//        email: 'jane.smith@example.com',
+//    },
+//    {
+//        rollNo: '106',
+//        photo: 'https://example.com/photo1.jpg',
+//        name: 'John mary',
+//        gender: 'Female',
+//        class: '10A',
+//        section: 'A',
+//        parents: 'Mr. and Mrs. Doe',
+//        address: '123 Main Street, City',
+//        dob: '2005-05-10',
+//        phone: '+1234567890',
+//        email: 'john.doe@example.com',
+//    },
+//];
 
 const feeHistoryColumns = [
     {
@@ -122,6 +125,9 @@ const StudentDetails = () => {
     const [isFeesHistoryVisible, setFeesHistoryVisible] = useState(false);
     const [isResultsVisible, setResultsVisible] = useState(false);
     const [feeDetails, setFeesDetails] = useState([])
+    const [loading, setLoading] = useState(false);
+    const [studentDetails, setStudentDetails] = useState(false);
+
     // eslint-disable-next-line no-unused-vars
     const [feesHistory, setFeesHistory] = useState([
         {
@@ -145,6 +151,21 @@ const StudentDetails = () => {
         // Add more fee history records as needed
     ])
 
+    const handleStudentDelete = (record) => {
+        api.post('/students/delete', record)
+            .then((response) => {
+                setLoading(false)
+                message.success('student details deleted successfully.');
+                form.resetFields();
+                fetchStudentDetails()
+            })
+            .catch((error) => {
+                setLoading(false)
+                const errMessage = error && error.response && error.response.data && error.response.data.message
+                message.error(errMessage || 'Technical error, please try again later.!!');
+            });
+    };
+
 
     const columns = [
         {
@@ -162,6 +183,9 @@ const StudentDetails = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+            render: (_, record) => (
+                `${record.firstName} ${record.lastName}`
+            ),
         },
         {
             title: 'Gender',
@@ -178,20 +202,21 @@ const StudentDetails = () => {
             dataIndex: 'section',
             key: 'section',
         },
-        {
-            title: 'Parents',
-            dataIndex: 'parents',
-            key: 'parents',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
+        //{
+        //    title: 'Parents', TODO:
+        //    dataIndex: 'parents',
+        //    key: 'parents',
+        //},
+        //{
+        //    title: 'Address',
+        //    dataIndex: 'address',
+        //    key: 'address',
+        //},
         {
             title: 'Date of Birth',
-            dataIndex: 'dob',
-            key: 'dob',
+            dataIndex: 'dateOfBirth',
+            key: 'dateOfBirth',
+            render: (val) => new Date(val).toLocaleDateString()
         },
         {
             title: 'Phone',
@@ -211,10 +236,34 @@ const StudentDetails = () => {
                     <Button type='primary' onClick={() => setFeedDetailsVisible(true)}>Add Fees</Button>
                     <Button type='primary' onClick={() => setFeesHistoryVisible(true)}>View Fee History</Button>
                     <Button type='primary' onClick={() => setResultsVisible(true)}>Results</Button>
+                    <Button type="link" danger onClick={() => handleStudentDelete(record)}>
+                        <DeleteOutlined />
+                    </Button>
                 </Space>
             ),
         },
     ];
+
+    useEffect(() => {
+        fetchStudentDetails()
+    }, [])
+
+
+    const fetchStudentDetails = () => {
+        setLoading(true)
+        return api.get('/students/fetch')
+            .then((response) => {
+                setLoading(false)
+                if (response && response.data) {
+                    const data = response.data
+                    setStudentDetails(data || [])
+                }
+            })
+            .catch((err) => {
+                setLoading(false)
+                console.error(err)
+            })
+    }
 
     const showDrawer = () => {
         setVisible(true);
@@ -230,13 +279,31 @@ const StudentDetails = () => {
         setFeesDetails({ ...feeDetails, values })
         form.resetFields();
     };
+
+    const onStudentAdd = (values) => {
+        setLoading(true)
+        api.post('/students/add', values)
+            .then((response) => {
+                setLoading(false)
+                message.success('Earnings added successfully.');
+                form.resetFields();
+                setVisible(false);
+                fetchStudentDetails()
+            })
+            .catch((error) => {
+                setLoading(false)
+                const errMessage = error && error.response && error.response.data && error.response.data.message
+                message.error(errMessage || 'Technical error, please try again later.!!');
+            });
+    };
+
     return (
         <>
             Students Details
             <Button type="primary" onClick={showDrawer} style={{ float: 'right', marginBottom: 16 }}>
                 Add New Student
             </Button>
-            <Table columns={columns} dataSource={data} />
+            <Table loading={loading} columns={columns} dataSource={studentDetails} />
 
             <Drawer
                 width={800}
@@ -245,7 +312,12 @@ const StudentDetails = () => {
                 bodyStyle={{ paddingBottom: 80 }}
                 title="Student Registration"
             >
-                <StudentAdmissionForm onClose={onClose} isUserRegistration={true} />
+                <StudentAdmissionForm
+                    onClose={onClose}
+                    isUserRegistration={true}
+                    form={form}
+                    onFinish={onStudentAdd}
+                />
             </Drawer>
 
             <Drawer

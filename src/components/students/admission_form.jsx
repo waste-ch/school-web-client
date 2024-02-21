@@ -1,38 +1,44 @@
 import React from 'react';
-import { Form, Input, Select, DatePicker, Upload, Button, message } from 'antd';
-import { UploadOutlined, SaveOutlined, UndoOutlined } from '@ant-design/icons';
+import {
+    Form, Input, Select, DatePicker,
+    Button,
+    // Upload,
+    //  message 
+} from 'antd';
+import {
+    //UploadOutlined, 
+    SaveOutlined, UndoOutlined
+} from '@ant-design/icons';
 const { Option } = Select;
 const { TextArea } = Input;
 
-const StudentAdmissionForm = () => {
-    const onFinish = (values) => {
-        //TODO: You can handle the form submission logic here
-        console.log('Form submitted:', values);
-        message.success('Student admission details saved successfully!');
-    };
+const StudentAdmissionForm = ({ onFinish, form }) => {
+    //const onFinish = (values) => {
+    //    //TODO: You can handle the form submission logic here
+    //    console.log('Form submitted:', values);
+    //    message.success('Student admission details saved successfully!');
+    //};
 
     const onReset = () => {
         // You can handle the form reset logic here
         form.resetFields();
     };
 
-    const normFile = (e) => {
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e && e.fileList;
-    };
+    //const normFile = (e) => {
+    //    if (Array.isArray(e)) {
+    //        return e;
+    //    }
+    //    return e && e.fileList;
+    //};
 
-    const propsUpload = {
-        beforeUpload: () => false, // Prevent file upload, customize according to your needs
-    };
+    //const propsUpload = {
+    //    beforeUpload: () => false, // Prevent file upload, customize according to your needs
+    //};
 
     const formItemLayout = {
         labelCol: { span: 4 }, // Decrease the span to align labels to the left
         wrapperCol: { span: 16 }, // Adjust wrapper span if necessary
     };
-
-    const [form] = Form.useForm();
 
     return (
         <Form
@@ -62,11 +68,11 @@ const StudentAdmissionForm = () => {
                 </Select>
             </Form.Item>
 
-            <Form.Item label="Date of Birth" name="dob">
+            <Form.Item label="Date of Birth" name="dateOfBirth">
                 <DatePicker />
             </Form.Item>
 
-            <Form.Item label="Roll" name="roll">
+            <Form.Item label="Roll" name="rollNo">
                 <Input />
             </Form.Item>
 
@@ -102,11 +108,11 @@ const StudentAdmissionForm = () => {
                 <TextArea />
             </Form.Item>
 
-            <Form.Item label="Photo" name="photo" valuePropName="fileList" getValueFromEvent={normFile}>
+            {/*<Form.Item label="Photo" name="photo" valuePropName="fileList" getValueFromEvent={normFile}>
                 <Upload {...propsUpload} listType="picture" maxCount={1}>
                     <Button icon={<UploadOutlined />}>Upload</Button>
                 </Upload>
-            </Form.Item>
+            </Form.Item>*/}
 
             <Form.Item wrapperCol={{ offset: 6, span: 12 }}>
                 <Button type="primary" icon={<SaveOutlined />} htmlType="submit">
