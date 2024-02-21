@@ -1,24 +1,63 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Table, Select, Button, Space, Modal } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import ResultForm from './result_form'
+import api from '../../axios-config'
 
 const { Option } = Select;
 const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#ff3860'];
 const examTypes = ['Midterm', 'Final', 'FA1', 'FA2']
 
 
-const StudentResults = () => {
+const StudentResults = ({ studentDetails }) => {
     const [examType, setExamType] = useState('Midterm');
     const [showAnalysisModal, setShowAnalysisModal] = useState(false);
     const [selectedSubject, setSelectedSubject] = useState('');
     const [prevMarksData, setPrevMarksData] = useState([]);
+    const [showResultModal, setShowResultModal] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [marksData, setMarksData] = useState({
-        English: { Midterm: 80, Final: 85, FA1: 50, FA2: 70 },
-        Math: { Midterm: 75, Final: 78, FA1: 50, FA2: 70 },
-        Science: { Midterm: 85, Final: 82, FA1: 50, FA2: 70 },
-        History: { Midterm: 70, Final: 75, FA1: 50, FA2: 70 },
+        //English: { Midterm: 80, Final: 85, FA1: 50, FA2: 70 },
+        //Math: { Midterm: 75, Final: 78, FA1: 50, FA2: 70 },
+        //Science: { Midterm: 85, Final: 82, FA1: 50, FA2: 70 },
+        //History: { Midterm: 70, Final: 75, FA1: 50, FA2: 70 },
     });
+
+    useEffect(() => {
+        if (studentDetails && studentDetails.studentId) {
+            fetchStudentResults(studentDetails)
+        }
+    }, [studentDetails])
+
+    const fetchStudentResults = () => {
+        return api.get('/students/results/fetch', { params: studentDetails })
+            .then((response) => {
+                if (response && response.data) {
+                    const results = response.data;
+                    const updatedMarksData = { ...marksData };
+
+                    // Map the results to marksData format
+                    results.forEach(result => {
+                        const { subject, examType, marks } = result;
+                        if (updatedMarksData[subject]) {
+                            updatedMarksData[subject][examType] = marks;
+                        } else {
+                            updatedMarksData[subject] = {}
+                            updatedMarksData[subject][examType] = marks;
+                        }
+                    });
+
+                    setMarksData(updatedMarksData);
+                }
+            })
+            .catch((err) => {
+                //setLoading(false)
+                console.error(err)
+            })
+    }
+
+
 
     const handleChangeExamType = (value) => {
         setExamType(value);
@@ -78,6 +117,8 @@ const StudentResults = () => {
 
     return (
         <div>
+
+            <Button type="primary" onClick={() => setShowResultModal(true)} style={{ float: 'right', marginBottom: '10px' }}>Add Results</Button> {/* Add button for adding results */}
             <Select defaultValue={examType} onChange={handleChangeExamType}>
                 <Option value="Midterm">Midterm</Option>
                 <Option value="Final">Final</Option>
@@ -113,6 +154,26 @@ const StudentResults = () => {
                         ))}
                     </LineChart>
                 </ResponsiveContainer>
+            </Modal>
+
+
+
+            {/* Modal for adding result */}
+            <Modal
+                title="Add Result"
+                visible={showResultModal}
+                onCancel={() => setShowResultModal(false)}
+                footer={null}
+            >
+                {/* Render the result form component */}
+                <ResultForm
+                    studentDetails={studentDetails}
+                    onSuccess={() => {
+                        setShowResultModal(false); // Hide the modal on successful submission
+                        // You can perform any additional actions upon successful submission
+                        fetchStudentResults()
+                    }}
+                />
             </Modal>
         </div>
     );

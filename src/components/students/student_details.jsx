@@ -124,6 +124,7 @@ const StudentDetails = () => {
     const [isFeedDetailsVisible, setFeedDetailsVisible] = useState(false);
     const [isFeesHistoryVisible, setFeesHistoryVisible] = useState(false);
     const [isResultsVisible, setResultsVisible] = useState(false);
+    const [selectedStudent, setSelectedStudent] = useState({});
     const [feeDetails, setFeesDetails] = useState([])
     const [loading, setLoading] = useState(false);
     const [studentDetails, setStudentDetails] = useState(false);
@@ -235,7 +236,10 @@ const StudentDetails = () => {
                 <Space size="middle">
                     <Button type='primary' onClick={() => setFeedDetailsVisible(true)}>Add Fees</Button>
                     <Button type='primary' onClick={() => setFeesHistoryVisible(true)}>View Fee History</Button>
-                    <Button type='primary' onClick={() => setResultsVisible(true)}>Results</Button>
+                    <Button type='primary' onClick={() => {
+                        setSelectedStudent(record)
+                        setResultsVisible(true)
+                    }}>Results</Button>
                     <Button type="link" danger onClick={() => handleStudentDelete(record)}>
                         <DeleteOutlined />
                     </Button>
@@ -357,7 +361,7 @@ const StudentDetails = () => {
                 footer={null}
                 width={1000}
             >
-                <StudentAnalysis />
+                <StudentAnalysis studentDetails={selectedStudent} />
             </Modal>
         </>
     );
