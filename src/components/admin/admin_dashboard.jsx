@@ -18,6 +18,7 @@ import {
     //BusOutlined,
     ProfileOutlined,
     StarOutlined,
+    LineChartOutlined
 
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Image } from 'antd';
@@ -26,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import ExpensesChart from './expenses';
 import EarningForm from './earning';
 import NonTeaching from './non_teaching';
-import AdminFeedback from './admin_feedback';
+//import AdminFeedback from './admin_feedback';
 import SchoolNews from './school_news';
 import AdminResults from './admin_results';
 import TransportDetails from './transport';
@@ -43,8 +44,8 @@ import Feedback from '../feedbacks'
 
 import Events from '../teachers/main/Events';
 import Attendance from '../teachers/main/Attendance';
-import UploadBooks from '../teachers/admin_teacher_lib';
-import PhotoUpload from '../teachers/main/teachers_gallery';
+//import UploadBooks from '../teachers/admin_teacher_lib';
+//import PhotoUpload from '../teachers/main/teachers_gallery';
 import Timetable from '../teachers/main/timetable';
 import DailyRoutine from '../teachers/main/teachers_schedule';
 
@@ -53,6 +54,7 @@ import Admin from '../admin'
 import StudentDetails from '../students/students'
 import ParentDetails from '../parents/parents'
 import TeacherDetails from '../teachers/teachers'
+import Performance from '../performance'
 
 import './admin.css';
 
@@ -168,6 +170,11 @@ const menuItems = [
         label: 'Non Teaching',
         icon: <ProfileOutlined />,
     },
+    {
+        key: 'performance',
+        label: 'Performance',
+        icon: <LineChartOutlined />,
+    },
     //{
     //    key: 'gallery',
     //    label: 'Gallery',
@@ -274,9 +281,11 @@ const AdminDashboard = () => {
                     {(selectedTab === 'expenses') && <ExpensesChart />}
                     {(selectedTab === 'earningForm') && <EarningForm />}
                     {(selectedTab === 'nonTeaching') && <NonTeaching />}
-                    {(selectedTab === 'uploadBooks') && <UploadBooks />}
+                    {(selectedTab === 'performance') && <Performance />}
+
+                    {/*{(selectedTab === 'uploadBooks') && <UploadBooks />}
                     {(selectedTab === 'PhotoUpload') && <PhotoUpload />}
-                    {(selectedTab === 'AdminFeedback') && <AdminFeedback />}
+                    {(selectedTab === 'AdminFeedback') && <AdminFeedback />}*/}
                 </Content>
             </Layout>
         </Layout>
