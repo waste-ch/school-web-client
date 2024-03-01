@@ -11,29 +11,29 @@ const marksData = {
     Maths: {
         'Class 1': {
             Midterm: {
-                Aplus: 10,
+                'A+': 10,
                 A: 20,
-                Bplus: 30,
+                'B+': 30,
                 B: 40,
             },
             Final: {
-                Aplus: 15,
+                'A+': 15,
                 A: 25,
-                Bplus: 35,
+                'B+': 35,
                 B: 45,
             },
         },
         'Class 2': {
             Midterm: {
-                Aplus: 12,
+                'A+': 12,
                 A: 22,
-                Bplus: 32,
+                'B+': 32,
                 B: 42,
             },
             Final: {
-                Aplus: 18,
+                'A+': 18,
                 A: 28,
-                Bplus: 38,
+                'B+': 38,
                 B: 48,
             },
         },
@@ -41,29 +41,29 @@ const marksData = {
     Science: {
         'Class 1': {
             Midterm: {
-                Aplus: 5,
+                'A+': 5,
                 A: 10,
-                Bplus: 15,
+                'B+': 15,
                 B: 20,
             },
             Final: {
-                Aplus: 8,
+                'A+': 8,
                 A: 13,
-                Bplus: 18,
+                'B+': 18,
                 B: 23,
             },
         },
         'Class 2': {
             Midterm: {
-                Aplus: 7,
+                'A+': 7,
                 A: 12,
-                Bplus: 17,
+                'B+': 17,
                 B: 22,
             },
             Final: {
-                Aplus: 9,
+                'A+': 9,
                 A: 14,
-                Bplus: 19,
+                'B+': 19,
                 B: 24,
             },
         },

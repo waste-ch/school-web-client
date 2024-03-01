@@ -88,6 +88,8 @@ const AdminCharts = () => {
         <Row gutter={16}>
             <Col span={8} key={'earnings'}>
                 <Card title="Earnings">
+                    <span style={{ marginBottom: '5px' }}> Student Total: 1000</span>
+
                     <Area
                         data={earnings}
                         xField='year'

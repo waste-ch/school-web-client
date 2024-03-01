@@ -4,6 +4,7 @@ import { Table, Select, Button, Space, Modal } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import ResultForm from './result_form'
 import api from '../../axios-config'
+import PieChart from './pie_charts'
 
 const { Option } = Select;
 const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#ff3860'];
@@ -153,7 +154,10 @@ const StudentResults = ({ studentDetails }) => {
                             />
                         ))}
                     </LineChart>
+
                 </ResponsiveContainer>
+                <PieChart />
+
             </Modal>
 
 
